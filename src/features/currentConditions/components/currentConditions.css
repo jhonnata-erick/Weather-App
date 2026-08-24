@@ -1,0 +1,82 @@
+.weather-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  padding: 60px 24px 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto,
+    sans-serif;
+  color: #ffffff;
+}
+
+/* Header & Location */
+.weather-header {
+  position: relative;
+  width: 100%;
+}
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.location {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin: 0;
+  opacity: 0.9;
+}
+
+/* Vertical Status Label */
+.status-tag {
+  font-size: 14px;
+  font-weight: 500;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  opacity: 0.85;
+  letter-spacing: 0.5px;
+}
+
+/* Main Temperature Display */
+.temperature-wrapper {
+  display: flex;
+  align-items: flex-start;
+  margin-top: -10px;
+}
+
+.temperature {
+  font-size: 120px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -4px;
+}
+
+.degree-symbol {
+  font-size: 40px;
+  font-weight: 300;
+  margin-top: 12px;
+  margin-left: 2px;
+}
+
+/* Bottom Glassmorphic Card */
+.metrics-card {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 18px 12px;
+  border-radius: 20px;
+
+  /* Glass Effect */
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+}

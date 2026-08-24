@@ -1,0 +1,16 @@
+{
+  "query": "187.102.92.117",
+  "status": "success",
+  "country": "Brazil",
+  "countryCode": "BR",
+  "region": "RS",
+  "regionName": "Rio Grande do Sul",
+  "city": "Uruguaiana",
+  "zip": "97502",
+  "lat": -29.7494,
+  "lon": -57.0931,
+  "timezone": "America/Sao_Paulo",
+  "isp": "Bnet Telecomunicações Ltda",
+  "org": "Bnet Telecomunicações Ltda",
+  "as": "AS53096 Bnet Telecomunicações Ltda"
+}
