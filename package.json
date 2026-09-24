@@ -7,20 +7,28 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
+    "lucide-react": "^1.45.0",
+    "openmeteo": "^1.2.3",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.2",
+    "react-spinners": "^0.17.1",
     "tailwindcss": "^4.3.3",
+    "vitest": "^4.1.11",
     "zustand": "^5.0.15"
   },
   "devDependencies": {
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
     "@vitejs/plugin-react": "^6.0.4",
+    "msw": "^2.15.0",
     "oxlint": "^1.75.0",
     "typescript": "^7.0.2",
     "vite": "^8.2.0"
