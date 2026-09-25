@@ -1,5 +1,5 @@
 import type { WeatherApiResponse } from "@openmeteo/sdk/weather-api-response.js";
-import type { WeatherForecastData } from "../types/api-types.ts";
+import type { WeatherForecastData } from "../types/app-types.ts";
 
 export function weatherRawDataAdapter(weatherRawData: WeatherApiResponse) {
   const latitude = weatherRawData.latitude();

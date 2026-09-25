@@ -1,5 +1,5 @@
 import { getWWOcode } from "../../services/getWWOcode.ts";
-import type { DailyWeather, RawDailyWeather } from "../../types/api-types.ts";
+import type { DailyWeather, RawDailyWeather } from "../../types/app-types.ts";
 
 export async function dailyAdapter(
   dailyData: RawDailyWeather,

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { SearchFeature } from "../../features/search/components/SearchFeature.tsx";
-import type { WeatherApp } from "../../types/api-types.ts";
+import type { WeatherApp } from "../../types/app-types.ts";
 import { CurrentConditions } from "../ui/WeatherApp/CurrentConditions.tsx";
 import { WeatherDetails } from "../ui/WeatherApp/WeatherDetails.tsx";
 import { HourlyForecast } from "../ui/WeatherApp/HourlyForecast.tsx";

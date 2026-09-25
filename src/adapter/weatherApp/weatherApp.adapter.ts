@@ -2,7 +2,7 @@ import type {
   Address,
   WeatherApp,
   WeatherForecastData,
-} from "../../types/api-types.ts";
+} from "../../types/app-types.ts";
 import type { WeatherApiResponse } from "@openmeteo/sdk/weather-api-response.js";
 import { weatherRawDataAdapter } from "../weatherApiResponse.ts";
 import { currentAdapter } from "./currentWeather.adapter.ts";

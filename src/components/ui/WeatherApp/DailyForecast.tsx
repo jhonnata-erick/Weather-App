@@ -1,4 +1,4 @@
-import type { DailyWeather } from "../../../types/api-types.ts";
+import type { DailyWeather } from "../../../types/app-types.ts";
 import { WeatherIcon } from "../../weather-icon.tsx";
 
 export const DailyForecast = ({

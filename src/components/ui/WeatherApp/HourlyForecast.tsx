@@ -1,4 +1,4 @@
-import type { HourlyWeather } from "../../../types/api-types.ts";
+import type { HourlyWeather } from "../../../types/app-types.ts";
 import { WeatherIcon } from "../../weather-icon.tsx";
 
 export const HourlyForecast = ({

@@ -1,4 +1,4 @@
-import type { Address } from "../../types/api-types.ts";
+import type { Address } from "../../types/app-types.ts";
 
 interface location {
   lat: number;

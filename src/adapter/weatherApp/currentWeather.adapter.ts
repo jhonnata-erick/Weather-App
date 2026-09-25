@@ -3,7 +3,7 @@ import type {
   Address,
   RawCurrentWeather,
   CurrentWeather,
-} from "../../types/api-types.ts";
+} from "../../types/app-types.ts";
 import { getWWOcode } from "../../services/getWWOcode.ts";
 
 export async function currentAdapter(

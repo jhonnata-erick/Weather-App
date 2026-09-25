@@ -1,5 +1,5 @@
 import { Droplets, Eye, Sun, SunDim, Thermometer } from "lucide-react";
-import type { TodayHighlights } from "../../../types/api-types.ts";
+import type { TodayHighlights } from "../../../types/app-types.ts";
 
 export const WeatherDetails = ({
   todayWeather,

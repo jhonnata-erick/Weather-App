@@ -1,4 +1,4 @@
-import type { HourlyWeather, RawHourlyWeather } from "../../types/api-types.ts";
+import type { HourlyWeather, RawHourlyWeather } from "../../types/app-types.ts";
 
 export async function hourlyAdapter(
   hourlyData: RawHourlyWeather,

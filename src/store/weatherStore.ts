@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { getGeocodingData } from "../services/geocoding-api/getLocationName.ts";
-import type { location, WeatherApp } from "../types/api-types.ts";
+import type { location, WeatherApp } from "../types/app-types.ts";
 import { getWeatherData } from "../services/weather-api/getWeatherData.ts";
 import { weatherAppAdapter } from "../adapter/weatherApp/weatherApp.adapter.ts";
 

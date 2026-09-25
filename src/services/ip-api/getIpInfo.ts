@@ -1,4 +1,4 @@
-import type { IpInfo } from "../../types/api-types.ts";
+import type { IpInfo } from "../../types/app-types.ts";
 
 export async function getIpInfo(ip: string): Promise<IpInfo> {
   const response = await fetch(`http://ip-api.com/json/${ip}?fields=188894`);

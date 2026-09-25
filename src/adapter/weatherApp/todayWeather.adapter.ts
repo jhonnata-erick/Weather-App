@@ -2,7 +2,7 @@ import type {
   RawCurrentWeather,
   TodayHighlights,
   WeatherForecastData,
-} from "../../types/api-types.ts";
+} from "../../types/app-types.ts";
 
 export function todayWeatherAdapter(
   weatherData: WeatherForecastData,
