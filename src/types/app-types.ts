@@ -31,7 +31,21 @@ export interface Address {
 }
 
 // ====== OpenMeteo ===== //
-
+export interface ApiParams {
+  latitude: number;
+  longitude: number;
+  daily: string[];
+  hourly: string[];
+  models: string;
+  current: string[];
+  timezone: string;
+  past_days: number;
+  forecast_days: number;
+  forecast_hours: number;
+  past_hours: number;
+  forecast_minutely_15: number;
+  past_minutely_15: number;
+}
 export interface OpenMeteoResponse {
   latitude: number;
   longitude: number;
