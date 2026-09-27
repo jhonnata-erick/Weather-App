@@ -3,8 +3,8 @@ import "./App.css";
 import { useEffect, useState } from "react";
 import type { IpInfo } from "../types/app-types.ts";
 import { useNavigate } from "react-router-dom";
-import { getUserIp } from "../services/ip-api/getUserIp.ts";
-import { getIpInfo } from "../services/ip-api/getIpInfo.ts";
+import { getUserIp } from "../services/getData/getUserIp.ts";
+import { getIpInfo } from "../services/getData/getIpInfo.ts";
 
 function App() {
   console.log("on <App/>");

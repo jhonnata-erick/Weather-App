@@ -164,25 +164,27 @@ export interface OpenMeteoDaily {
 // ===== APP DATA LAYER ===== //
 
 export interface TodayForecast {
-  current: {
-    date: string;
-    temperature: number;
-    weather_status: string;
-    feelslike: number;
-  };
-  hourly: {
-    hour: number;
-    temperature: number;
-  }[];
-  days: {
-    dayOfWeek: string;
-    day: number;
-    max_temperature: number;
-    min_temperature: number;
-    precipitation_chance?: number;
-  }[];
+  current: TodayForecastCurrent;
+  hourly: TodayForecastHour[];
+  daily: TodayForecastDay[];
 }
-
+export interface TodayForecastCurrent {
+  date: string;
+  temperature: number;
+  weather_status: string;
+  feelslike: number;
+}
+export interface TodayForecastHour {
+  hour: number | string;
+  temperature: number;
+}
+export interface TodayForecastDay {
+  dayOfWeek: string;
+  day: number;
+  max_temperature: number;
+  min_temperature: number;
+  precipitation_chance?: number;
+}
 export interface HourlyForecast {
   hourly: {
     hour: number;
