@@ -1,3 +1,5 @@
-import type { OpenMeteoDaily } from "../types/app-types.ts";
+import type { DailyForecast, OpenMeteoDaily } from "../types/app-types.ts";
 
-export async function daily_adapter(daily: OpenMeteoDaily) {}
+export async function daily_adapter(
+  daily: OpenMeteoDaily,
+): Promise<DailyForecast> {}

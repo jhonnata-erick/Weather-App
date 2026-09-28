@@ -1,15 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { SearchFeature } from "../../features/search/components/SearchFeature.tsx";
-import type { WeatherApp } from "../../types/app-types.ts";
+import type { TodayForecast } from "../../types/app-types.ts";
 import { CurrentConditions } from "../ui/WeatherApp/CurrentConditions.tsx";
 import { WeatherDetails } from "../ui/WeatherApp/WeatherDetails.tsx";
 import { HourlyForecast } from "../ui/WeatherApp/HourlyForecast.tsx";
 import { DailyForecast } from "../ui/WeatherApp/DailyForecast.tsx";
 
 export function ForecastPageLayout({
-  WeatherAppData,
+  todayForecast,
 }: {
-  WeatherAppData: WeatherApp;
+  todayForecast: TodayForecast;
 }) {
   const navigate = useNavigate();
   return (

@@ -12,16 +12,16 @@ export function ForecastPage() {
 
   const navigate = useNavigate();
 
-  const getWeatherAppData = useWeatherStore((state) => state.getWeatherAppData);
+  const setAppData = useWeatherStore((state) => state.setWeatherData);
   const status = useWeatherStore((state) => state.status);
   const error = useWeatherStore((status) => status.error);
-  const WeatherAppData = useWeatherStore((state) => state.WeatherAppData);
+  const todayForecast = useWeatherStore((state) => state.todayForecast);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       if (validateLocation(location)) {
         try {
-          getWeatherAppData(location);
+          setAppData(location);
         } catch (e) {
           navigate(`/error`);
         }
@@ -35,8 +35,8 @@ export function ForecastPage() {
     console.log("foda em" + error);
     navigate(`/error/${error}`);
   }
-  if (!WeatherAppData || status === "loading") return <LoadingPage />;
+  if (!todayForecast || status === "loading") return <LoadingPage />;
 
   console.log(status);
-  return <ForecastPageLayout WeatherAppData={WeatherAppData} />;
+  return <ForecastPageLayout todayForecast={todayForecast} />;
 }

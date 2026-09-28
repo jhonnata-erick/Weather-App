@@ -8,10 +8,20 @@ import type {
 } from "../types/app-types.ts";
 import { getWeatherData } from "../services/getData/getWeatherData.ts";
 import { getWWOcode } from "../services/getData/getWWOcode.ts";
-import { today_adapter } from "../adapter/today.adapter.ts";
 import { main_adapter } from "../adapter/main.adapter.ts";
+import { today_adapter } from "../adapter/today.adapter.ts";
+import { hourly_adapter } from "../adapter/hourly.adapter.ts";
+import { daily_adapter } from "../adapter/daily.adapter.ts";
+import { CacheData } from "../services/cache/cacheResponse.ts";
+import React from "react";
 
 type WeatherStatus = "idle" | "loading" | "success" | "error";
+
+function boga(a: number, b: string) {
+  return a + b;
+}
+
+const getWeather = CacheData(getWeatherData, 30);
 
 interface AppStateStore {
   location: { lat: number; lon: number };
@@ -33,12 +43,19 @@ const useWeatherStore = create<AppStateStore>((set) => ({
   setWeatherData: async (location: location) => {
     try {
       set({ status: "loading", location: location, error: "" });
-      const weatherApiResponse = getWeatherData(location);
-      const [todayForecast, hourlyForecast, dailyForecast] =
-        await main_adapter();
+      const weatherApiResponse = await getWeather(location);
+      const [todayForecast, hourlyForecast, dailyForecast] = await Promise.all([
+        today_adapter(
+          weatherApiResponse.current,
+          weatherApiResponse.hourly,
+          weatherApiResponse.daily,
+        ),
+        hourly_adapter(weatherApiResponse.hourly),
+        daily_adapter(weatherApiResponse.daily),
+      ]);
       set({
         status: "success",
-        todayForecast: null,
+        todayForecast: todayForecast,
         hourlyForecast: null,
         dailyForecast: null,
       });
