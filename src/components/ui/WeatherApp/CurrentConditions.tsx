@@ -1,5 +1,4 @@
 import { MapPinCheck } from "lucide-react";
-import type { CurrentWeather } from "../../../types/app-types.ts";
 
 interface CurrentConditionsProps {
   city: string;

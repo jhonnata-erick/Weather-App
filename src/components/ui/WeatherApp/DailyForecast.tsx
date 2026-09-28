@@ -1,10 +1,10 @@
-import type { DailyWeather } from "../../../types/app-types.ts";
+import type { TodayForecastDay } from "../../../types/app-types.ts";
 import { WeatherIcon } from "../../weather-icon.tsx";
 
 export const DailyForecast = ({
   dailyForecast,
 }: {
-  dailyForecast: DailyWeather;
+  dailyForecast: TodayForecastDay[];
 }) => {
   return (
     <section className="daily-forecast">
@@ -13,19 +13,19 @@ export const DailyForecast = ({
         {dailyForecast.map((daily) => {
           return (
             <div
-              key={daily.day_of_week + daily.max_temp}
+              key={daily.dayOfWeek + daily.max_temperature}
               className="daily-card"
             >
-              <div className="day-name">{daily.day_of_week}</div>
+              <div className="day-name">{daily.dayOfWeek}</div>
               <div className="weather-type">
                 <div className="weather-icon">
-                  <WeatherIcon code={daily.weather_code} size={20} />
+                  <WeatherIcon code={2} size={20} />
                 </div>
-                <div className="weather-desc">{daily.weather_type}</div>
+                <div className="weather-desc">{"bacaba"}</div>
               </div>
               <div className="temperatures">
-                <div className="max-temp">{daily.max_temp}</div>
-                <div className="min-temp">{daily.min_temp}</div>
+                <div className="max-temp">{daily.max_temperature}</div>
+                <div className="min-temp">{daily.min_temperature}</div>
               </div>
             </div>
           );

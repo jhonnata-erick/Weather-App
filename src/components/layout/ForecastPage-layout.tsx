@@ -12,22 +12,22 @@ export function ForecastPageLayout({
   todayForecast: TodayForecast;
 }) {
   const navigate = useNavigate();
+  console.log(todayForecast);
   return (
     <main>
       <section className="first-section">
         <SearchFeature />
         <CurrentConditions
-          city={WeatherAppData.city}
-          temperature={WeatherAppData.currentConditions.temperature}
-          description={WeatherAppData.currentConditions.description}
-          current_date={WeatherAppData.currentConditions.current_date}
-          current_hour={WeatherAppData.currentConditions.current_hour}
+          city={"naotemais"}
+          temperature={todayForecast.current.temperature + ""}
+          description={todayForecast.current.weather_status}
+          current_date={todayForecast.current.date}
+          current_hour={todayForecast.current.feelslike + ""}
         />
-        <WeatherDetails todayWeather={WeatherAppData.todayWeather} />
       </section>
       <section className="forecast-section">
-        <HourlyForecast hourlyForecast={WeatherAppData.hourlyForecast} />
-        <DailyForecast dailyForecast={WeatherAppData.dailyForecast} />
+        <HourlyForecast hourlyForecast={todayForecast.hourly} />
+        <DailyForecast dailyForecast={todayForecast.daily} />
       </section>
     </main>
   );

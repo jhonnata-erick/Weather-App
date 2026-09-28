@@ -21,7 +21,7 @@ function boga(a: number, b: string) {
   return a + b;
 }
 
-const getWeather = CacheData(getWeatherData, 30);
+const getWeather = CacheData(getWeatherData, 600);
 
 interface AppStateStore {
   location: { lat: number; lon: number };

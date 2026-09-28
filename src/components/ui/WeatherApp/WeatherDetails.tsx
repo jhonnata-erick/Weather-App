@@ -1,11 +1,6 @@
 import { Droplets, Eye, Sun, SunDim, Thermometer } from "lucide-react";
-import type { TodayHighlights } from "../../../types/app-types.ts";
 
-export const WeatherDetails = ({
-  todayWeather,
-}: {
-  todayWeather: TodayHighlights;
-}) => {
+export const WeatherDetails = ({ todayWeather }: { todayWeather: any }) => {
   return (
     <section className="weather-today-container">
       <div className="weather-today">

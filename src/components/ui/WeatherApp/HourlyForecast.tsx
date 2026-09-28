@@ -1,10 +1,10 @@
-import type { HourlyWeather } from "../../../types/app-types.ts";
+import type { TodayForecastHour } from "../../../types/app-types.ts";
 import { WeatherIcon } from "../../weather-icon.tsx";
 
 export const HourlyForecast = ({
   hourlyForecast,
 }: {
-  hourlyForecast: HourlyWeather;
+  hourlyForecast: TodayForecastHour[];
 }) => {
   return (
     <section className="hourly-forecast">
@@ -12,20 +12,14 @@ export const HourlyForecast = ({
       <div className="hourly-display">
         {hourlyForecast.map((hourly) => {
           return (
-            <div key={hourly.temp + hourly.hour} className="hourly-card">
+            <div key={hourly.hour} className="hourly-card">
               <div className="hourly-hour">{hourly.hour}</div>
               <div className="hourly-icon-container">
-                <WeatherIcon code={hourly.weather_code} isDay={hourly.isDay} />
+                <WeatherIcon code={2} isDay={true} />
               </div>
-              <div className="hourly-temperature">{hourly.temp}</div>
-              {Number(
-                [...hourly.precipitation_chance]
-                  .filter((l) => l !== "%")
-                  .join(""),
-              ) > 0 && (
-                <div className="hourly-precipitation">
-                  {hourly.precipitation_chance}
-                </div>
+              <div className="hourly-temperature">{hourly.temperature}</div>
+              {Number([..."0%"].filter((l) => l !== "%").join("")) > 0 && (
+                <div className="hourly-precipitation">{"2%"}</div>
               )}
             </div>
           );

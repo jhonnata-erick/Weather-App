@@ -8,7 +8,7 @@ export function CacheData<T extends any[], R>( //T agora pode ser tanto um tipo 
   func: (...args: T) => R,
   stale_time: number,
 ): (...args: T) => Promise<Awaited<R>> {
-  const currentUTCsec = new Date().getUTCMilliseconds() * 1000; // Define Segundo Atual
+  const currentUTCsec = new Date().getTime() / 1000; // Define Segundo Atual
   const timeTostale = currentUTCsec + stale_time; // Definindo o segundo em que o dado será considerado antigo
   const cachedListString = localStorage.getItem("cache"); // Pegando o json de cache no local storage
   const cachedList: CacheJson[] | null = cachedListString // se for null cachedList é = a null

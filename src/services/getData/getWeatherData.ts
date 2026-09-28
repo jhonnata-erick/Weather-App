@@ -5,7 +5,6 @@ import type {
   OpenMeteoResponse,
   ApiParams,
 } from "../../types/app-types.ts";
-const cache = new Cache();
 export async function getWeatherData(
   location: location,
 ): Promise<OpenMeteoResponse> {
