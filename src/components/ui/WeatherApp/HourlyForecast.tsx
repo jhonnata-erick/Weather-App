@@ -12,7 +12,7 @@ export const HourlyForecast = ({
       <div className="hourly-display">
         {hourlyForecast.map((hourly) => {
           return (
-            <div key={hourly.hour} className="hourly-card">
+            <div key={Math.random()} className="hourly-card">
               <div className="hourly-hour">{hourly.hour}</div>
               <div className="hourly-icon-container">
                 <WeatherIcon code={2} isDay={true} />

@@ -12,10 +12,7 @@ export const DailyForecast = ({
       <div className="forecast-display">
         {dailyForecast.map((daily) => {
           return (
-            <div
-              key={daily.dayOfWeek + daily.max_temperature}
-              className="daily-card"
-            >
+            <div key={Math.random()} className="daily-card">
               <div className="day-name">{daily.dayOfWeek}</div>
               <div className="weather-type">
                 <div className="weather-icon">

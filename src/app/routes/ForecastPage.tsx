@@ -9,7 +9,7 @@ import { ForecastPageLayout } from "../../components/layout/ForecastPage-layout.
 export function ForecastPage() {
   const { lat, lon } = useParams<{ lat: string; lon: string }>();
   const location = { lat: Number(lat), lon: Number(lon) };
-
+  console.log(lat, lon);
   const navigate = useNavigate();
 
   const setAppData = useWeatherStore((state) => state.setWeatherData);
@@ -25,6 +25,8 @@ export function ForecastPage() {
         } catch (e) {
           navigate(`/error`);
         }
+      } else {
+        navigate(`/*`);
       }
     }, 1000);
     return () => {

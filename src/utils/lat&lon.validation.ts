@@ -1,14 +1,13 @@
-interface location {
-  lat: number;
-  lon: number;
-}
-export function validateLocation(location: location) {
-  const { lat, lon } = location;
+import type { location } from "../types/app-types.ts";
+
+export function validateLocation({ lat, lon }: location) {
   if (
     typeof lat !== "number" ||
     typeof lon !== "number" ||
     Number.isNaN(lat) ||
-    Number.isNaN(lon)
+    Number.isNaN(lon) ||
+    lat === undefined ||
+    lon === undefined
   ) {
     return false;
   }

@@ -73,3 +73,4 @@ export function openmeteoParamsToURL({ lat, lon }: location) {
   const paramsURL = paramsArray.map((value) => value.join("=")).join("&");
   return endpoint + "?" + paramsURL;
 }
+export function openmeteoStaleTime() {}

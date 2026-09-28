@@ -13,11 +13,12 @@ function App() {
 
   useEffect(() => {
     let ipInfoJson = localStorage.getItem("userLoc");
-    if (ipInfoJson) {
+    const rawData: any = ipInfoJson ? JSON.parse(ipInfoJson) : null;
+    if (rawData.lat && rawData.lon) {
       setStatus(
         "We already have your location! Redirecting to forecast page...",
       );
-      const ipInfo: IpInfo = JSON.parse(ipInfoJson);
+      const ipInfo: IpInfo = rawData;
       const { lat, lon } = ipInfo;
       navigate(`/forecast/${lat}/${lon}`);
     } else {
