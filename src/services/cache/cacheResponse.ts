@@ -36,6 +36,13 @@ export function CacheData<T extends any[], R>( //T agora pode ser tanto um tipo 
   }
 
   function add(key: string, data: Awaited<R>) {
+    console.log(
+      "tempo de expiração desses dados definido para " +
+        stale_time +
+        " segundos e " +
+        stale_time / 60 +
+        " minutos",
+    );
     const cachejson: CacheJson = {
       // Novo objeto de cache do resultado
       key: key,
@@ -46,6 +53,7 @@ export function CacheData<T extends any[], R>( //T agora pode ser tanto um tipo 
     localStorage.setItem("cache", JSON.stringify(newCache)); // O resultado agora é persistido
   }
   function hit(key: string) {
+    console.log("Ja temos uma versao atualizada desses dados");
     //Retorna o resultado que ainda está novo
     const index = newCache.findIndex((item) => item.key === key);
     const item = newCache[index];

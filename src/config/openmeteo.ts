@@ -73,4 +73,17 @@ export function openmeteoParamsToURL({ lat, lon }: location) {
   const paramsURL = paramsArray.map((value) => value.join("=")).join("&");
   return endpoint + "?" + paramsURL;
 }
-export function openmeteoStaleTime() {}
+export function openmeteoStaleTime(): number {
+  const date = new Date();
+  const currentMinute = date.getUTCMinutes();
+  const openmeteoMinutes = [0, 15, 30, 45];
+  let stale: number = 0;
+
+  openmeteoMinutes.forEach((m) => {
+    const soma =
+      stale === 0 && currentMinute - m <= 0 ? (currentMinute - m) * -1 : 0;
+    stale = soma;
+  });
+
+  return stale * 60;
+}

@@ -14,14 +14,11 @@ import { hourly_adapter } from "../adapter/hourly.adapter.ts";
 import { daily_adapter } from "../adapter/daily.adapter.ts";
 import { CacheData } from "../services/cache/cacheResponse.ts";
 import React from "react";
+import { openmeteoStaleTime } from "../config/openmeteo.ts";
 
 type WeatherStatus = "idle" | "loading" | "success" | "error";
 
-function boga(a: number, b: string) {
-  return a + b;
-}
-
-const getWeather = CacheData(getWeatherData, 600);
+const getWeather = CacheData(getWeatherData, openmeteoStaleTime());
 
 interface AppStateStore {
   location: { lat: number; lon: number };

@@ -9,9 +9,13 @@ import { ForecastPage } from "./routes/ForecastPage.tsx";
 import { IdlePage } from "./routes/Idle.tsx";
 import { Error } from "./routes/Error.tsx";
 import ConnectionLost from "./routes/ConnectionLost.tsx";
+import { Start } from "./routes/Start.tsx";
+import { Permission } from "./routes/Permission.tsx";
 
 const router = createBrowserRouter([
   { path: "/", element: <App /> },
+  { path: "/start", element: <Start /> },
+  { path: "/permission", element: <Permission /> },
   { path: "/search", element: <IdlePage /> },
   { path: "/error", element: <Error /> },
   { path: "*", element: <NotFoundPage /> },
