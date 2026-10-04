@@ -189,8 +189,11 @@ export interface TodayForecastCurrent {
   feelslike: number;
 }
 export interface TodayForecastHour {
-  hour: number | string;
-  temperature: number;
+  hour: string;
+  temperature: string;
+  weather_code: number;
+  past: boolean;
+  isDay: boolean;
 }
 export interface TodayForecastDay {
   dayOfWeek: string;

@@ -5,13 +5,6 @@
   justify-content: center;
 }
 
-.first-section {
-  background-image: url("/public/images/paisagem.svg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
 .weather-container {
   padding: 96px 24px 40px;
   height: 100vh;
@@ -23,62 +16,12 @@
   color: #ffffff;
 }
 
-/* Header & Location */
-
-.weather-header {
-  display: grid;
-  gap: 16px;
-  position: relative;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.top-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
-}
-.location-info-container {
-  align-items: center;
-  opacity: 0.9;
-}
-.location {
-  display: flex;
-  gap: 8px;
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  margin: 0;
-}
-
-/* Vertical Status Label */
-.status-tag {
-  font-size: 18px;
-  font-weight: 600;
-  opacity: 0.85;
-  letter-spacing: 0.5px;
-  box-sizing: border-box;
-}
-
 /* Main Temperature Display */
 .temperature-wrapper {
   position: relative;
   display: flex;
   align-items: center;
   margin-top: -10px;
-}
-
-.temperature {
-  font-size: 180px;
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: -4px;
-  background: linear-gradient(white, transparent);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .degree-symbol {

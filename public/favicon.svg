@@ -1,0 +1,574 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="512"
+  height="512"
+  viewBox="0 0 512 512"
+  fill="none"
+>
+  <defs>
+
+    <!-- ================= SKY ================= -->
+
+    <linearGradient
+      id="sky"
+      x1="256"
+      y1="0"
+      x2="256"
+      y2="512"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset="0" stop-color="#42A9EE"/>
+      <stop offset="0.58" stop-color="#2B9BE8"/>
+      <stop offset="1" stop-color="#138FE1"/>
+    </linearGradient>
+
+    <!-- Large curved light region in the sky -->
+    <linearGradient
+      id="skyArc"
+      x1="256"
+      y1="0"
+      x2="256"
+      y2="220"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop
+        offset="0"
+        stop-color="#A2D9FA"
+        stop-opacity="0.74"
+      />
+
+      <stop
+        offset="1"
+        stop-color="#71C0F5"
+        stop-opacity="0.20"
+      />
+    </linearGradient>
+
+
+    <!-- ================= SUN ================= -->
+
+    <radialGradient
+      id="sun"
+      cx="0"
+      cy="0"
+      r="1"
+      gradientUnits="userSpaceOnUse"
+      gradientTransform="
+        translate(297 248)
+        rotate(90)
+        scale(114)
+      "
+    >
+      <stop offset="0" stop-color="#FFF7B5"/>
+      <stop offset="0.48" stop-color="#FFE77E"/>
+      <stop offset="0.82" stop-color="#FFD660"/>
+      <stop offset="1" stop-color="#FFCB4B"/>
+    </radialGradient>
+
+
+    <!-- Sun glow -->
+
+    <radialGradient
+      id="sunGlow"
+      cx="0"
+      cy="0"
+      r="1"
+      gradientUnits="userSpaceOnUse"
+      gradientTransform="
+        translate(297 248)
+        rotate(90)
+        scale(160)
+      "
+    >
+      <stop
+        offset="0"
+        stop-color="#FFF8BE"
+        stop-opacity="0.52"
+      />
+
+      <stop
+        offset="0.58"
+        stop-color="#FFEBA6"
+        stop-opacity="0.16"
+      />
+
+      <stop
+        offset="1"
+        stop-color="#FFEBA6"
+        stop-opacity="0"
+      />
+    </radialGradient>
+
+
+    <!-- ================= CLOUDS ================= -->
+
+    <linearGradient
+      id="cloud"
+      x1="256"
+      y1="200"
+      x2="256"
+      y2="512"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.24" stop-color="#F3F9FE"/>
+      <stop offset="0.50" stop-color="#DCECFB"/>
+      <stop offset="0.74" stop-color="#A8D2F4"/>
+      <stop offset="1" stop-color="#69ADEC"/>
+    </linearGradient>
+
+
+    <linearGradient
+      id="cloudBlue"
+      x1="256"
+      y1="300"
+      x2="256"
+      y2="512"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop
+        offset="0"
+        stop-color="#8AC7F4"
+        stop-opacity="0.20"
+      />
+
+      <stop
+        offset="0.55"
+        stop-color="#6EB3EE"
+        stop-opacity="0.62"
+      />
+
+      <stop
+        offset="1"
+        stop-color="#3D93E4"
+        stop-opacity="0.96"
+      />
+    </linearGradient>
+
+
+    <linearGradient
+      id="cloudBottom"
+      x1="256"
+      y1="390"
+      x2="256"
+      y2="512"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop
+        offset="0"
+        stop-color="#68AFE9"
+        stop-opacity="0.28"
+      />
+
+      <stop
+        offset="1"
+        stop-color="#2D89DC"
+        stop-opacity="0.96"
+      />
+    </linearGradient>
+
+
+    <!-- Cloud highlights -->
+
+    <radialGradient
+      id="cloudHighlight"
+      cx="0"
+      cy="0"
+      r="1"
+      gradientUnits="userSpaceOnUse"
+      gradientTransform="
+        translate(128 286)
+        rotate(90)
+        scale(112 170)
+      "
+    >
+      <stop
+        offset="0"
+        stop-color="#FFFFFF"
+        stop-opacity="0.66"
+      />
+
+      <stop
+        offset="1"
+        stop-color="#FFFFFF"
+        stop-opacity="0"
+      />
+    </radialGradient>
+
+
+    <radialGradient
+      id="cloudHighlight2"
+      cx="0"
+      cy="0"
+      r="1"
+      gradientUnits="userSpaceOnUse"
+      gradientTransform="
+        translate(240 325)
+        rotate(90)
+        scale(96 155)
+      "
+    >
+      <stop
+        offset="0"
+        stop-color="#FFFFFF"
+        stop-opacity="0.55"
+      />
+
+      <stop
+        offset="1"
+        stop-color="#FFFFFF"
+        stop-opacity="0"
+      />
+    </radialGradient>
+
+
+    <radialGradient
+      id="cloudShade"
+      cx="0"
+      cy="0"
+      r="1"
+      gradientUnits="userSpaceOnUse"
+      gradientTransform="
+        translate(250 455)
+        rotate(90)
+        scale(120 300)
+      "
+    >
+      <stop
+        offset="0"
+        stop-color="#378FDE"
+        stop-opacity="0.20"
+      />
+
+      <stop
+        offset="1"
+        stop-color="#378FDE"
+        stop-opacity="0"
+      />
+    </radialGradient>
+
+
+    <!-- ================= FILTERS ================= -->
+
+    <filter
+      id="blur16"
+      x="-60%"
+      y="-60%"
+      width="220%"
+      height="220%"
+    >
+      <feGaussianBlur stdDeviation="16"/>
+    </filter>
+
+
+    <filter
+      id="blur26"
+      x="-60%"
+      y="-60%"
+      width="220%"
+      height="220%"
+    >
+      <feGaussianBlur stdDeviation="26"/>
+    </filter>
+
+
+    <filter
+      id="cloudShadow"
+      x="-30%"
+      y="-30%"
+      width="160%"
+      height="180%"
+    >
+      <feDropShadow
+        dx="0"
+        dy="12"
+        stdDeviation="16"
+        flood-color="#1F6CA9"
+        flood-opacity="0.18"
+      />
+    </filter>
+
+
+    <!-- ================= ICON CLIP ================= -->
+
+    <clipPath id="clip">
+      <rect
+        width="512"
+        height="512"
+        rx="112"
+      />
+    </clipPath>
+
+  </defs>
+
+
+  <!-- ================= BACKGROUND ================= -->
+
+  <rect
+    width="512"
+    height="512"
+    rx="112"
+    fill="url(#sky)"
+  />
+
+
+  <g clip-path="url(#clip)">
+
+    <!-- Large curved lighter sky -->
+
+    <path
+      d="
+        M-25 42
+        C64 169 169 214 272 213
+        C376 211 468 145 537 28
+        L537 -24
+        L-25 -24
+        Z
+      "
+      fill="url(#skyArc)"
+    />
+
+
+    <!-- Subtle atmospheric light -->
+
+    <ellipse
+      cx="265"
+      cy="78"
+      rx="250"
+      ry="150"
+      fill="#B2DEFA"
+      opacity="0.08"
+      filter="url(#blur26)"
+    />
+
+
+    <!-- ================= SUN ================= -->
+
+    <circle
+      cx="297"
+      cy="248"
+      r="160"
+      fill="url(#sunGlow)"
+      filter="url(#blur16)"
+    />
+
+    <circle
+      cx="297"
+      cy="248"
+      r="114"
+      fill="url(#sun)"
+    />
+
+
+    <!-- ==================================================
+         MAIN CLOUD SILHOUETTE
+
+         This follows the composition of the reference:
+         left starts around 200px,
+         small left cloud lobes,
+         central large cloud,
+         right descending slope.
+    ================================================== -->
+
+    <path
+      d="
+        M-14 200
+
+        C18 207 49 224 68 243
+
+        C84 236 101 237 118 245
+
+        C132 251 143 257 153 251
+
+        C168 242 184 238 201 239
+
+        C260 239 307 275 318 328
+
+        C320 339 320 349 319 356
+
+        C349 359 378 376 400 402
+
+        C422 416 444 426 464 431
+
+        C480 421 494 414 526 410
+
+        L526 526
+
+        L-14 526
+
+        Z
+      "
+      fill="url(#cloud)"
+      filter="url(#cloudShadow)"
+    />
+
+
+    <!-- Soft light on the upper cloud volumes -->
+
+    <ellipse
+      cx="95"
+      cy="276"
+      rx="128"
+      ry="92"
+      fill="url(#cloudHighlight)"
+      opacity="0.95"
+    />
+
+    <ellipse
+      cx="213"
+      cy="300"
+      rx="125"
+      ry="91"
+      fill="url(#cloudHighlight2)"
+      opacity="0.88"
+    />
+
+
+    <!-- Left cloud volume -->
+
+    <path
+      d="
+        M-18 255
+
+        C10 243 39 247 62 264
+
+        C86 281 91 310 113 326
+
+        C132 340 155 344 176 336
+
+        C155 361 124 371 93 363
+
+        C57 354 25 331 -18 316
+
+        Z
+      "
+      fill="#9CCCF3"
+      opacity="0.42"
+    />
+
+
+    <!-- Large front cloud volume -->
+
+    <path
+      d="
+        M-30 351
+
+        C10 328 50 328 84 343
+
+        C118 358 131 390 164 400
+
+        C198 410 225 385 256 372
+
+        C290 357 327 365 359 386
+
+        C386 405 409 423 444 430
+
+        C454 432 460 432 464 431
+
+        C444 442 418 448 391 444
+
+        C356 439 335 419 306 414
+
+        C275 409 254 432 226 443
+
+        C193 457 157 449 133 431
+
+        C108 413 95 392 67 384
+
+        C36 374 5 381 -30 401
+
+        Z
+      "
+      fill="url(#cloudBlue)"
+    />
+
+
+    <!-- Lower cloud -->
+
+    <path
+      d="
+        M-28 404
+
+        C12 381 52 378 85 389
+
+        C119 401 134 429 164 441
+
+        C193 452 220 444 244 429
+
+        C271 412 297 406 323 414
+
+        C350 422 366 445 393 454
+
+        C416 462 441 462 465 454
+
+        C485 447 503 436 528 430
+
+        L528 530
+
+        L-28 530
+
+        Z
+      "
+      fill="url(#cloudBottom)"
+    />
+
+
+    <!-- Soft cloud shadow -->
+
+    <ellipse
+      cx="132"
+      cy="418"
+      rx="150"
+      ry="78"
+      fill="#4A9CE2"
+      opacity="0.20"
+      filter="url(#blur16)"
+    />
+
+    <ellipse
+      cx="345"
+      cy="439"
+      rx="175"
+      ry="72"
+      fill="#2E86D9"
+      opacity="0.18"
+      filter="url(#blur16)"
+    />
+
+
+    <rect
+      x="-10"
+      y="390"
+      width="532"
+      height="140"
+      fill="url(#cloudShade)"
+      opacity="0.6"
+    />
+
+
+    <!-- Soft highlight around the cloud edge near the sun -->
+
+    <path
+      d="
+        M176 244
+
+        C184 240 192 239 202 239
+
+        C258 239 303 274 315 324
+
+        C308 297 291 273 267 258
+
+        C244 244 220 237 198 238
+
+        C190 239 182 241 176 244
+
+        Z
+      "
+      fill="#FFFFFF"
+      opacity="0.28"
+      filter="url(#blur16)"
+    />
+
+  </g>
+
+</svg>

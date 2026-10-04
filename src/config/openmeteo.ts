@@ -76,13 +76,13 @@ export function openmeteoParamsToURL({ lat, lon }: location) {
 export function openmeteoStaleTime(): number {
   const date = new Date();
   const currentMinute = date.getUTCMinutes();
-  const openmeteoMinutes = [0, 15, 30, 45];
+  const openmeteoMinutes = [0, 15, 30, 45, 59.99];
   let stale: number = 0;
 
   openmeteoMinutes.forEach((m) => {
-    const soma =
+    const openmeteoStale =
       stale === 0 && currentMinute - m <= 0 ? (currentMinute - m) * -1 : 0;
-    stale = soma;
+    stale = openmeteoStale;
   });
 
   return stale * 60;

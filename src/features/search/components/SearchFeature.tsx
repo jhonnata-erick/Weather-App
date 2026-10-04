@@ -3,6 +3,7 @@ import { getSearchLocation } from "../api/getSearchLocation.ts";
 import { useDebounce } from "../hooks/useDebounce.tsx";
 import { LocationsList, type GeocodingResults } from "./locationsList.tsx";
 import { Search } from "lucide-react";
+import { CacheData } from "../../../services/cache/cacheResponse.ts";
 
 export function SearchFeature({
   isSearchOpen = false,
@@ -18,11 +19,12 @@ export function SearchFeature({
 
   const debouncedSearchData = useDebounce(searchData, 250);
 
+  const getLocation = CacheData(getSearchLocation, 10000000);
   /* === Setting states === */
 
   useEffect(() => {
     if (debouncedSearchData.length > 0) {
-      const responses = getSearchLocation(debouncedSearchData);
+      const responses = getLocation(debouncedSearchData);
       responses.then((response) => {
         setLocations(response);
       });

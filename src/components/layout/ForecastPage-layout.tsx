@@ -1,34 +1,63 @@
-import { useNavigate } from "react-router-dom";
-import { SearchFeature } from "../../features/search/components/SearchFeature.tsx";
+// @ts-expect-error CSS side-effect imports are handled by the bundler.
+import "./ForecastPage-styles.css";
 import type { TodayForecast } from "../../types/app-types.ts";
-import { CurrentConditions } from "../ui/WeatherApp/CurrentConditions.tsx";
-import { WeatherDetails } from "../ui/WeatherApp/WeatherDetails.tsx";
-import { HourlyForecast } from "../ui/WeatherApp/HourlyForecast.tsx";
-import { DailyForecast } from "../ui/WeatherApp/DailyForecast.tsx";
+import { CurrentConditions } from "../ui/ForecastPage/CurrentConditions.tsx";
+import { HourlyForecast } from "../ui/ForecastPage/HourlyForecast.tsx";
+import { DailyForecast } from "../ui/ForecastPage/DailyForecast.tsx";
+import { ForecastHeader } from "../ui/ForecastPage/Header.tsx";
+import { useState } from "react";
+import { createLucideIcon } from "lucide-react";
+
+const Minus = createLucideIcon("minus", [
+  ["path", { d: "M0 12h24", key: "9i4pu4" }],
+]);
 
 export function ForecastPageLayout({
   todayForecast,
 }: {
   todayForecast: TodayForecast;
 }) {
-  const navigate = useNavigate();
-  console.log(todayForecast);
   return (
-    <main>
-      <section className="first-section">
-        <SearchFeature />
-        <CurrentConditions
-          city={"naotemais"}
-          temperature={todayForecast.current.temperature + ""}
-          description={todayForecast.current.weather_status}
-          current_date={todayForecast.current.date}
-          current_hour={todayForecast.current.feelslike + ""}
-        />
-      </section>
-      <section className="forecast-section">
-        <HourlyForecast hourlyForecast={todayForecast.hourly} />
-        <DailyForecast dailyForecast={todayForecast.daily} />
-      </section>
-    </main>
+    <>
+      <main>
+        <section className="skyimage">
+          <header className="forecast-header">
+            <ForecastHeader />
+          </header>
+          <CurrentConditions
+            temperature={todayForecast.current.temperature}
+            description={todayForecast.current.weather_status}
+            feels_like={todayForecast.current.feelslike}
+            max_temp={25}
+            min_temp={18}
+            weather_code={1}
+          />
+        </section>
+        <section className="forecast-details">
+          <Minus className="mx-auto" strokeWidth={2} />
+          <div className="flex flex-col items-center pb-4">
+            <strong className="text-lg">More Details</strong>
+          </div>
+          <HourlyForecast hourlyForecast={todayForecast.hourly} />
+          <DailyForecast dailyForecast={todayForecast.daily} />
+        </section>
+      </main>
+      <nav></nav>
+      <footer>
+        <p>
+          This simple weather app shows you your current weather, hourly
+          forecast, and daily forecast.
+        </p>
+        <p>
+          My main goal is to improve my abilities with UX, system design,
+          performance, and accessibility
+        </p>
+        <p>
+          My github page:
+          <a href="https://github.com/jhonnata-erick">jhonnata-erick</a>
+        </p>
+        <br />
+      </footer>
+    </>
   );
 }

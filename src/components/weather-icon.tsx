@@ -12,6 +12,8 @@ import {
   type LucideProps,
   Moon,
   CloudMoon,
+  Sunrise,
+  Sunset,
 } from "lucide-react";
 
 interface WeatherIconProps {
@@ -62,6 +64,8 @@ export function WeatherIcon({
     95: { day: CloudLightning, night: CloudLightning }, // Trovoada leve ou moderada
     96: { day: CloudLightning, night: CloudLightning }, // Trovoada com granizo leve
     97: { day: CloudLightning, night: CloudLightning }, // Trovoada com granizo forte
+    200: { day: Sunrise, night: Sunrise }, // Nascer do sol
+    300: { day: Sunset, night: Sunset }, // Por do sol
   };
   const IconDay = iconMap[code]?.day || Sparkles;
   const IconNight = iconMap[code]?.night || Sparkles;
