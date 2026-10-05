@@ -15,7 +15,23 @@ export type IpInfo = {
 };
 
 // ====== Nomatim geocoding ====== //
-
+export interface Nomatim {
+  place_id: number;
+  licence: string;
+  osm_type: string;
+  osm_id: number;
+  lat: string;
+  lon: string;
+  category: string;
+  type: string;
+  place_rank: number;
+  importance: number;
+  addresstype: string;
+  name: string;
+  display_name: string;
+  address: Address;
+  boundingbox: string[];
+}
 export interface Address {
   house_number: string;
   road: string;
@@ -241,4 +257,40 @@ export interface DailyForecast {
 export interface location {
   lat: number;
   lon: number;
+}
+export interface locationInfo {
+  name: string;
+  city: string;
+  state: string;
+  country: string;
+  time: string;
+  location: location;
+  timesQueried: number;
+}
+
+export interface GeocodingResults {
+  generationtime_ms?: number;
+  results?: Location[];
+}
+export interface Location {
+  id: number;
+  name: string;
+  latitude: number;
+  longitude: number;
+  elevation: number;
+  feature_code: string;
+  country_code: string;
+  admin1_id: number;
+  admin2_id: number;
+  admin3_id: number;
+  admin4_id: number;
+  timezone: string;
+  population: number;
+  postcodes: string[];
+  country_id: number;
+  country: string;
+  admin1: string;
+  admin2: string;
+  admin3: string;
+  admin4: string;
 }

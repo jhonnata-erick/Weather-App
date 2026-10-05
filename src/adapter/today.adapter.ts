@@ -1,9 +1,11 @@
 import { getWWOcode } from "../services/getData/getWWOcode.ts";
 import type {
+  HourlyForecast,
   OpenMeteoCurrently,
   OpenMeteoDaily,
   OpenMeteoHourly,
   TodayForecast,
+  TodayForecastHour,
 } from "../types/app-types.ts";
 import { getDayOfWeek } from "../utils/dayofweek.ts";
 
@@ -12,82 +14,57 @@ export async function today_adapter(
   hourly: OpenMeteoHourly,
   daily: OpenMeteoDaily,
 ): Promise<TodayForecast> {
-  const sunset = new Date(daily.sunset[1]!);
-  const sunrise = new Date(daily.sunrise[1]!);
-
-  /*const hoursArray = () => {
-    for (let index = 0; index < hourly.time.length + 1; ) {
-      const newHourly: string[] = [];
-      const hour = new Date(hourly.time![index]!).getHours();
-      const ss = sunset.getHours() + sunset.getMinutes() / 60;
-      const sr = sunrise.getHours() + sunset.getMinutes() / 60;
-
-      if (sr >= hour && sr <= hour + 1) {
-        newHourly.push(hour + ":00");
-        newHourly.push(sunrise.toTimeString().slice(0, 5));
-        index += 2;
-      } else if (ss >= hour && ss <= hour + 1) {
-        newHourly.push(hour + ":00");
-        newHourly.push(sunset.toTimeString().slice(0, 5));
-        index += 2;
-      } else if (hour === now) {
-        newHourly.push("Now");
-        index++;
-      } else {
-        newHourly.push(hour + ":00");
-        index++;
-      }
-      if (index === hourly.time.length + 1) {
-        return newHourly;
-      }
-    }
-  };*/
-
+  /* ===== Current Conditions ===== */
   const currentConditions = {
     date: new Date(current.time).toDateString(),
     temperature: +current.temperature_2m.toFixed(0),
     weather_status: await getWWOcode(current.weather_code),
     feelslike: +current.apparent_temperature.toFixed(0),
   };
-  const hourlyTime = hourly.time.map((h) => new Date(h).getHours());
-  const ss = sunset.getHours() + sunset.getMinutes() / 60;
-  const sr = sunrise.getHours() + sunrise.getMinutes() / 60;
-  const sri = hourlyTime.findIndex((h) => h > sr);
-  const ssi = hourlyTime.findIndex((h) => h > ss && ss < h - 1);
-  const sss = new Date(0, 0, 1, sunset.getHours(), sunset.getMinutes())
-    .toTimeString()
-    .slice(0, 5);
-  const srs = new Date(0, 0, 1, sunrise.getHours(), sunrise.getMinutes())
-    .toTimeString()
-    .slice(0, 5);
+
+  /* ========= Hourly Forecast ==========*/
+
+  const sunset = new Date(daily.sunset[1]!);
+  const sunrise = new Date(daily.sunrise[1]!);
 
   const now = new Date(current.time);
-  const hoursForecast = hourly.time.map((h, i) => {
-    const hour = new Date(h);
-    const hourForecast = {
-      hour:
-        hour.getHours() === now.getHours() ? "Now" : hour.getHours() + ":00",
-      temperature: hourly.temperature_2m[i]!.toFixed(0) + "º",
-      weather_code: hourly.weather_code[i]!,
-      past: hour < now,
-      isDay: hour > sunrise && hour < sunset,
+
+  const hours = [...hourly.time.map((h) => new Date(h)), sunrise, sunset, now];
+  const temperatures = [
+    ...hourly.temperature_2m.map((t) => +t.toFixed(0)),
+    "Sunrise",
+    "Sunset",
+    +current.temperature_2m.toFixed(0),
+  ];
+  const weather_code = [...hourly.weather_code, 200, 300, current.weather_code];
+  const past = hours.map((h) => h < now);
+  const isDay = hours.map((h) => h > sunrise && h < sunset);
+
+  const unHours = hours.map((h, i) => {
+    return {
+      hour: h,
+      temperature: temperatures[i]!,
+      weather_code: weather_code[i]!,
+      past: past[i]!,
+      isDay: isDay[i]!,
     };
-    return hourForecast;
   });
-  hoursForecast.splice(sri, 0, {
-    hour: srs,
-    temperature: "",
-    weather_code: 200,
-    past: sunrise < now,
-    isDay: true,
-  });
-  hoursForecast.splice(ssi, 0, {
-    hour: sss,
-    temperature: "",
-    weather_code: 300,
-    past: sunset < now,
-    isDay: true,
-  });
+
+  const hoursForecast: TodayForecastHour[] = unHours
+    .sort((a, b) => +a.hour - +b.hour)
+    .map((fh) => {
+      return {
+        ...fh,
+        hour: fh.hour === now ? "Now" : fh.hour.toTimeString().slice(0, 5),
+        temperature:
+          typeof fh.temperature === "number"
+            ? fh.temperature + "°"
+            : fh.temperature,
+      };
+    });
+
+  /* ========= Daily Forecast ========== */
+
   const daysForecast = daily.time.map((d, i) => {
     const dayForecast = {
       dayOfWeek: getDayOfWeek(d)!,
