@@ -8,34 +8,39 @@ export function CacheData<T extends any[], R>( //T agora pode ser tanto um tipo 
   func: (...args: T) => R,
   stale_time: number,
 ): (...args: T) => Promise<Awaited<R>> {
-  const currentUTCsec = new Date().getTime() / 1000; // Define Segundo Atual
-  const timeTostale = currentUTCsec + stale_time; // Definindo o segundo em que o dado será considerado antigo
   const cachedListString = localStorage.getItem("cache"); // Pegando o json de cache no local storage
   const cachedList: CacheJson[] | null = cachedListString // se for null cachedList é = a null
     ? JSON.parse(cachedListString)
     : null;
 
   let newCache: CacheJson[] = []; // variavel newCache definida
-  if (cachedList) {
-    newCache = cachedList.filter((item) => item.timeTostale > currentUTCsec);
-  } // Se cachedlist não for nulo, cachedList é filtrado, pra ver se tem algum item guardado que é considerado antigo
-
   return async function (...args: T): Promise<Awaited<R>> {
     // Retorna uma nova função
+
+    if (cachedList) {
+      newCache = cachedList.filter((item) => item.timeTostale > currentUTCsec);
+    } // Se cachedlist não for nulo, cachedList é filtrado, pra ver se tem algum item guardado que é considerado antigo
+
+    const currentUTCsec = new Date().getTime() / 1000; // Define Segundo Atual
+    const timeTostale = currentUTCsec + stale_time; // Definindo o segundo em que o dado será considerado antigo
     const key: string = JSON.stringify(args); // A chave é os argumentos dessa função
     const data = newCache.some((item) => item.key === key) // Se no array newCache for encontrada a mesma chave, é executada a função hit, se não, é execitada miss
       ? hit(key)
-      : await miss(key, func(...args));
+      : await miss(key, func(...args), timeTostale);
     return data;
   };
 
-  async function miss(key: string, func: R): Promise<Awaited<R>> {
+  async function miss(
+    key: string,
+    func: R,
+    timeTostale: number,
+  ): Promise<Awaited<R>> {
     const data: Awaited<R> = await func; // Executa a função original
-    add(key, data); // Guarda o resultado
+    add(key, data, timeTostale); // Guarda o resultado
     return data; // E retorna ele
   }
 
-  function add(key: string, data: Awaited<R>) {
+  function add(key: string, data: Awaited<R>, timeTostale: number) {
     console.log(
       "tempo de expiração desses dados definido para " +
         stale_time +
