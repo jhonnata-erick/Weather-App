@@ -39,6 +39,12 @@ export async function today_adapter(
   const weather_code = [...hourly.weather_code, 200, 300, current.weather_code];
   const past = hours.map((h) => h < now);
   const isDay = hours.map((h) => h > sunrise && h < sunset);
+  const precipitation_chance = [
+    ...hourly.precipitation_probability,
+    0,
+    0,
+    current.precipitation,
+  ];
 
   const unHours = hours.map((h, i) => {
     return {
@@ -47,17 +53,19 @@ export async function today_adapter(
       weather_code: weather_code[i]!,
       past: past[i]!,
       isDay: isDay[i]!,
+      precipitation_chance: precipitation_chance[i]!,
     };
   });
   const hoursForecast: TodayForecastHour[] = unHours
-    .reduce((acc, item) => {
+
+    .sort((a, b) => +a.hour - +b.hour)
+    .reduce((acc, item, i) => {
       if (acc.some((i) => i.hour === item.hour)) {
         return acc;
       } else {
         return [...acc, item];
       }
     }, new Array(0))
-    .sort((a, b) => +a.hour - +b.hour)
     .map((fh) => {
       return {
         ...fh,
@@ -78,6 +86,7 @@ export async function today_adapter(
       max_temperature: +daily.temperature_2m_max[i]!.toFixed(0),
       min_temperature: +daily.temperature_2m_min[i]!.toFixed(0),
       precipitation_chance: daily.precipitation_probability_max[i]!,
+      weather_code: daily.weather_code[i]!,
     };
     return dayForecast;
   });

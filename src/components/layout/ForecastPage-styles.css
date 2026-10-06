@@ -138,7 +138,8 @@
 
   background: rgba(255, 255, 255, 0.96);
 
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.18) inset;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.18) inset;
+  border: 1px solid gray;
 
   animation: results-open 200ms ease-out;
 }
@@ -149,15 +150,50 @@
   justify-content: flex-start;
 }
 .item {
-  gap: 16px;
   width: 100%;
-  align-items: center;
-  padding: 16px 0px;
+
   display: flex;
+  align-items: center;
+
+  gap: 16px;
+
+  padding: 16px 16px;
+
+  border-bottom: 1px solid #eeeeee;
+  border-radius: 0.9rem;
+
+  background: transparent;
+
+  color: #2e3440;
+
+  font-family: "Nunito", sans-serif;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: background 150ms ease;
+}
+.item:hover {
+  background: #f2f4f7;
+}
+.location-name {
+  color: #252932;
+
+  font-size: 1rem;
+  font-weight: 700;
+}
+.location-info {
+  color: #9298a3;
+
+  font-size: 0.8rem;
+  font-weight: 400;
 }
 .history-section {
   overflow-y: auto;
   height: 40%;
+
+  list-style: none;
 }
 .search-history {
   display: flex;
@@ -246,17 +282,6 @@
 /* ================================
    RESULT TEXT
 ================================ */
-
-/*
-  Como seu JSX atualmente coloca:
-
-  nome:...
-  cidade:...
-  estado:...
-  pais:...
-
-  podemos estilizar cada div individualmente.
-*/
 
 .results li button div {
   width: 100%;
@@ -432,7 +457,16 @@
   height: 20px;
   width: 100%;
 }
-
+.precipitation-chance {
+  display: flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 8px;
+  background-color: #dbeafe;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1d4ed8;
+}
 /* ==========================================================================
    Estilização da Linha Gráfica (SVG)
    ========================================================================== */

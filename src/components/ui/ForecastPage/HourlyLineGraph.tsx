@@ -30,6 +30,11 @@ export default function HourlyLineGraph({
         />
       </div>
       <p className="temp">{hourForecast.temperature}</p>
+      {hourForecast.precipitation_chance > 4 && (
+        <p className="precipitation-chance">
+          {hourForecast.precipitation_chance + "%"}
+        </p>
+      )}
     </a>
   );
 }

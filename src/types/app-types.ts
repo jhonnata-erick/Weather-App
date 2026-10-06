@@ -210,6 +210,7 @@ export interface TodayForecastHour {
   weather_code: number;
   past: boolean;
   isDay: boolean;
+  precipitation_chance: number;
 }
 export interface TodayForecastDay {
   dayOfWeek: string;
@@ -217,6 +218,7 @@ export interface TodayForecastDay {
   max_temperature: number;
   min_temperature: number;
   precipitation_chance?: number;
+  weather_code: number;
 }
 export interface HourlyForecast {
   hourly: {
