@@ -36,7 +36,7 @@ export function ForecastPageLayout({
         <section className="forecast-details">
           <Minus className="mx-auto" strokeWidth={2} />
           <div className="flex flex-col items-center pb-4">
-            <strong className="text-lg">More Details</strong>
+            <strong className="text-lg">Today Details</strong>
           </div>
           <HourlyForecast hourlyForecast={todayForecast.hourly} />
           <DailyForecast dailyForecast={todayForecast.daily} />

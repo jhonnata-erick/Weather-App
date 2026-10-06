@@ -1,32 +1,7 @@
 import type { SetStateAction } from "react";
 import { useNavigate, type NavigateFunction } from "react-router-dom";
+import type { GeocodingResults, Location } from "../../../types/app-types.ts";
 
-export interface GeocodingResults {
-  generationtime_ms?: number;
-  results?: Location[];
-}
-interface Location {
-  id: number;
-  name: string;
-  latitude: number;
-  longitude: number;
-  elevation: number;
-  feature_code: string;
-  country_code: string;
-  admin1_id: number;
-  admin2_id: number;
-  admin3_id: number;
-  admin4_id: number;
-  timezone: string;
-  population: number;
-  postcodes: string[];
-  country_id: number;
-  country: string;
-  admin1: string;
-  admin2: string;
-  admin3: string;
-  admin4: string;
-}
 export function LocationsList({
   locationsList,
   setLocations,

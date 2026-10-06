@@ -259,6 +259,7 @@ export interface location {
   lon: number;
 }
 export interface locationInfo {
+  id: string;
   name: string;
   city: string;
   state: string;

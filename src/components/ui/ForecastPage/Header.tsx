@@ -1,7 +1,9 @@
-import { ChevronDown, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { SearchFeature } from "../../../features/search/components/SearchFeature.tsx";
+import useWeatherStore from "../../../store/weatherStore.ts";
 
 export function ForecastHeader() {
+  const currentLoc = useWeatherStore((status) => status.currentLoc);
   return (
     <>
       <div className="flex gap-2">
@@ -9,13 +11,10 @@ export function ForecastHeader() {
         <div className="location-info-container">
           <div className="location">
             <MapPin size={20} />
-            <span>Aqui</span>
-            <button className="more">
-              <ChevronDown />
-            </button>
+            <span>{currentLoc?.city}</span>
           </div>
           <div className="localDate">
-            <p>Agora</p>
+            <p>{currentLoc?.time}</p>
           </div>
         </div>
       </div>

@@ -75,15 +75,16 @@ export function openmeteoParamsToURL({ lat, lon }: location) {
 }
 export function openmeteoStaleTime(): number {
   const date = new Date();
-  const currentMinute = date.getUTCMinutes();
-  const openmeteoMinutes = [0, 15, 30, 45, 59.99];
+  const currentMinute = date.getMinutes();
+  const omMin = [0, 15, 30, 45, 59.99];
   let stale: number = 0;
-
-  openmeteoMinutes.forEach((m) => {
+  for (let index = 0; index < omMin.length; index++) {
     const openmeteoStale =
-      stale === 0 && currentMinute - m <= 0 ? (currentMinute - m) * -1 : 0;
+      stale === 0 && currentMinute - omMin[index]! < 0
+        ? omMin[index]! - currentMinute
+        : 0;
     stale = openmeteoStale;
-  });
+  }
 
   return stale * 60;
 }

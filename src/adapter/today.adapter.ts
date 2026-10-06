@@ -49,8 +49,14 @@ export async function today_adapter(
       isDay: isDay[i]!,
     };
   });
-
   const hoursForecast: TodayForecastHour[] = unHours
+    .reduce((acc, item) => {
+      if (acc.some((i) => i.hour === item.hour)) {
+        return acc;
+      } else {
+        return [...acc, item];
+      }
+    }, new Array(0))
     .sort((a, b) => +a.hour - +b.hour)
     .map((fh) => {
       return {
