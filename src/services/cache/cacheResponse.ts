@@ -12,7 +12,7 @@ export function CacheData<T extends any[], R>(
     const raw: string | null = localStorage.getItem("cache");
     const cacheList: CacheJson[] = raw ? JSON.parse(raw) : [];
     const filtered = cacheList.filter(
-      (item) => item.timeTostale < Date.now() / 1000,
+      (item) => item.timeTostale > Date.now() / 1000,
     );
     localStorage.setItem("cache", JSON.stringify(filtered));
     return filtered;

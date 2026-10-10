@@ -20,6 +20,7 @@ const storage = [
 function testfunc() {
   return 5 - 2;
 }
+function fetchfunc(key: string) {}
 describe("cacheResponse.ts", () => {
   it("should return the cached data and clean the repeated keys", () => {
     const cachedTestFunc = CacheData(testfunc, 30);
