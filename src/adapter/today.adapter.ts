@@ -29,7 +29,12 @@ export async function today_adapter(
 
   const now = new Date(current.time);
 
-  const hours = [...hourly.time.map((h) => new Date(h)), sunrise, sunset, now];
+  const hours = [
+    ...hourly.time.map((h) => new Date(h)).filter((h) => h !== now),
+    sunrise,
+    sunset,
+    now,
+  ];
   const temperatures = [
     ...hourly.temperature_2m.map((t) => +t.toFixed(0)),
     "Sunrise",
@@ -59,13 +64,7 @@ export async function today_adapter(
   const hoursForecast: TodayForecastHour[] = unHours
 
     .sort((a, b) => +a.hour - +b.hour)
-    .reduce((acc, item, i) => {
-      if (acc.some((i) => i.hour === item.hour)) {
-        return acc;
-      } else {
-        return [...acc, item];
-      }
-    }, new Array(0))
+    .filter((a, i) => a.hour !== unHours[i + 1]?.hour)
     .map((fh) => {
       return {
         ...fh,
