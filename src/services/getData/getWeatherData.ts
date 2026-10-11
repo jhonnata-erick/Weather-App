@@ -14,7 +14,7 @@ export async function getWeatherData(
     const error = await response.json();
     throw new HttpError(
       response.status,
-      error.reason,
+      error.cause,
       import.meta.url,
       response.url,
     );

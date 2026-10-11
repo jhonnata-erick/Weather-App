@@ -5,6 +5,6 @@ export async function getIpInfo(ip: string): Promise<IpInfo> {
   if (!response.ok) {
     throw new Error("Network failed");
   }
-  const data = response.json();
+  const data: IpInfo = await response.json();
   return data;
 }

@@ -18,6 +18,7 @@ import React from "react";
 import { openmeteoStaleTime } from "../config/openmeteo.ts";
 import { currentLocAdapter } from "../adapter/currentLoc.adapter.ts";
 import { getSearchLocation } from "../services/getData/getSearchLocation.ts";
+import { HttpError } from "../error/HttpRequest.ts";
 
 type WeatherStatus = "idle" | "loading" | "success" | "error";
 
@@ -100,7 +101,7 @@ const useWeatherStore = create<AppStateStore>((set) => ({
     } catch (error) {
       set({
         status: "error",
-        error: error instanceof Error ? error.message : String(error),
+        error: error instanceof HttpError ? error.message : String(error),
       });
     }
   },
