@@ -13,8 +13,8 @@ export const HourlyForecast = ({
   useEffect(() => {
     if (focusRef.current) {
       focusRef.current.scrollIntoView({
-        behavior: "auto",
-        block: "center",
+        behavior: "smooth",
+        block: "nearest",
         inline: "center",
       });
     }
