@@ -10,7 +10,7 @@ export function ErrorPageLayout({
   const navigate = useNavigate();
   return (
     <>
-      <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-b from-sky-300 via-sky-100 to-white px-5 py-12 text-slate-900">
+      <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-linear-to-b from-sky-300 via-sky-100 to-white px-5 py-12 text-slate-900">
         {/* Background decoration */}
         <div
           aria-hidden="true"
@@ -73,9 +73,6 @@ export function ErrorPageLayout({
             <Link to={"/"}>
               <button
                 type="button"
-                onClick={() => {
-                  navigate("/");
-                }}
                 className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/80 bg-white/60 px-6 py-3 font-semibold text-slate-700 backdrop-blur-sm transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-600 focus-visible:ring-offset-2"
               >
                 <svg

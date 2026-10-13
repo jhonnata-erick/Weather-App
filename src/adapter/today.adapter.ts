@@ -78,17 +78,20 @@ export async function today_adapter(
 
   /* ========= Daily Forecast ========== */
 
-  const daysForecast = daily.time.map((d, i) => {
-    const dayForecast = {
-      dayOfWeek: getDayOfWeek(d)!,
-      day: new Date(d).getDate(),
-      max_temperature: +daily.temperature_2m_max[i]!.toFixed(0),
-      min_temperature: +daily.temperature_2m_min[i]!.toFixed(0),
-      precipitation_chance: daily.precipitation_probability_max[i]!,
-      weather_code: daily.weather_code[i]!,
-    };
-    return dayForecast;
-  });
+  const daysForecast = await Promise.all(
+    daily.time.map(async (d, i) => {
+      const dayForecast = {
+        dayOfWeek: getDayOfWeek(d)!,
+        day: new Date(d).getDate(),
+        max_temperature: daily.temperature_2m_max[i]!.toFixed(0) + "°",
+        min_temperature: +daily.temperature_2m_min[i]!.toFixed(0) + "°",
+        precipitation_chance: daily.precipitation_probability_max[i]! + "%",
+        description: await getWWOcode(daily.weather_code[i]!),
+        weather_code: daily.weather_code[i]!,
+      };
+      return dayForecast;
+    }),
+  );
   const todayForecast = {
     current: currentConditions,
     hourly: hoursForecast,

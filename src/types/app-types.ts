@@ -215,9 +215,10 @@ export interface TodayForecastHour {
 export interface TodayForecastDay {
   dayOfWeek: string;
   day: number;
-  max_temperature: number;
-  min_temperature: number;
-  precipitation_chance?: number;
+  max_temperature: string;
+  min_temperature: string;
+  precipitation_chance?: string;
+  description: string;
   weather_code: number;
 }
 export interface HourlyForecast {

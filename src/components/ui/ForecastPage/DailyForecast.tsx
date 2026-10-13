@@ -16,7 +16,7 @@ export const DailyForecast = ({
               <div className="day-name">{daily.dayOfWeek}</div>
               <div className="weather-type">
                 <div className="weather-icon">
-                  <WeatherIcon code={2} size={20} />
+                  <WeatherIcon code={daily.weather_code} size={20} />
                 </div>
                 <div className="weather-desc">{"bacaba"}</div>
               </div>
