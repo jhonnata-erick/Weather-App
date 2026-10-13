@@ -34,8 +34,7 @@ export function ForecastPage() {
     };
   }, [lat, lon]);
   if (status === "error") {
-    console.log("foda em" + error);
-    navigate(`/error/${error}`);
+    navigate(`/error`);
   }
   if (!todayForecast || status === "loading") return <LoadingPage />;
 

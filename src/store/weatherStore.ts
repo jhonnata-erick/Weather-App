@@ -29,7 +29,7 @@ interface AppStateStore {
   locationsHistory: locationInfo[];
   currentLoc: null | locationInfo;
   status: WeatherStatus;
-  error: unknown;
+  error: HttpError | string;
   todayForecast: null | TodayForecast;
   hourlyForecast: null | HourlyForecast;
   dailyForecast: null | DailyForecast;
