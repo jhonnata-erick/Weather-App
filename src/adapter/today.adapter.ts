@@ -64,7 +64,7 @@ export async function today_adapter(
   const hoursForecast: TodayForecastHour[] = unHours
 
     .sort((a, b) => +a.hour - +b.hour)
-    .filter((a, i) => a.hour !== unHours[i + 1]?.hour)
+    .filter((a, i) => a.hour.getHours() !== unHours[i + 1]?.hour.getHours())
     .map((fh) => {
       return {
         ...fh,

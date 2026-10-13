@@ -1,10 +1,13 @@
+import { useEffect, useRef } from "react";
 import type { TodayForecastHour } from "../../../types/app-types.ts";
 import { WeatherIcon } from "../../weather-icon.tsx";
 
 export default function HourlyLineGraph({
+  ref,
   hourForecast,
   index,
 }: {
+  ref: React.RefObject<null | HTMLAnchorElement>;
   hourForecast: TodayForecastHour;
   index: number;
 }) {
@@ -14,14 +17,8 @@ export default function HourlyLineGraph({
     : hourForecast.past
       ? "time-column inactive"
       : "time-column";
-
   return (
-    <a
-      className={classNames}
-      onLoad={(e) => {
-        if (isNow) e.currentTarget.focus();
-      }}
-    >
+    <a className={classNames} ref={isNow ? ref : null}>
       <p className="time">{hourForecast.hour}</p>
       <div className="icon">
         <WeatherIcon
