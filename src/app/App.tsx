@@ -1,22 +1,26 @@
 // @ts-ignore
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import type { IpInfo } from "../types/app-types.ts";
 import { useNavigate } from "react-router-dom";
-import { getUserIp } from "../services/getData/getUserIp.ts";
-import { getIpInfo } from "../services/getData/getIpInfo.ts";
+import useWeatherStore from "../store/weatherStore.ts";
 
 function App() {
-  console.log("on <App/>");
   const navigate = useNavigate();
+  const status = useWeatherStore((s) => s.status);
+  const setError = useWeatherStore((s) => s.setError);
+
+  if (status === "offline") {
+    setError(new Error("No internet connection"));
+    navigate("/offline");
+    return <>you are offline</>;
+  }
 
   useEffect(() => {
     let ipInfoJson = localStorage.getItem("userLoc");
     const rawData: any = ipInfoJson ? JSON.parse(ipInfoJson) : null;
-    console.log(rawData);
     if (rawData && rawData.lat && rawData.lon) {
       const ipInfo: IpInfo = rawData;
-      console.log(ipInfo);
       const { lat, lon } = ipInfo;
       navigate(`/forecast/${lat}/${lon}`);
     } else {

@@ -20,7 +20,7 @@ import { currentLocAdapter } from "../adapter/currentLoc.adapter.ts";
 import { getSearchLocation } from "../services/getData/getSearchLocation.ts";
 import { HttpError } from "../error/HttpRequest.ts";
 
-type WeatherStatus = "idle" | "loading" | "success" | "error";
+type WeatherStatus = "idle" | "loading" | "success" | "error" | "offline";
 
 const getWeather = CacheData(getWeatherData, openmeteoStaleTime());
 const todayAdapter = CacheData(today_adapter, openmeteoStaleTime());
@@ -29,7 +29,8 @@ interface AppStateStore {
   locationsHistory: locationInfo[];
   currentLoc: null | locationInfo;
   status: WeatherStatus;
-  error: HttpError | string;
+  error: string;
+  setError: (err: unknown) => void;
   todayForecast: null | TodayForecast;
   hourlyForecast: null | HourlyForecast;
   dailyForecast: null | DailyForecast;
@@ -39,8 +40,12 @@ interface AppStateStore {
 const useWeatherStore = create<AppStateStore>((set) => ({
   locationsHistory: [],
   currentLoc: null,
-  status: "idle",
+  status: navigator.onLine ? "idle" : "offline",
   error: "",
+  setError: (err) => {
+    const error = err instanceof HttpError ? err.message : String(err);
+    set({ error: error, status: navigator.onLine ? "error" : "offline" });
+  },
   todayForecast: null,
   hourlyForecast: null,
   dailyForecast: null,
