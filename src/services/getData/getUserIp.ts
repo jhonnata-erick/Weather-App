@@ -6,7 +6,7 @@ export async function getUserIp(): Promise<string> {
     const error = await response.json();
     throw new HttpError(
       response.status,
-      error.cause,
+      error.message,
       import.meta.url,
       response.url,
     );

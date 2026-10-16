@@ -12,7 +12,7 @@ export async function getGeocodingData(location: location) {
     const error = await response.json();
     throw new HttpError(
       response.status,
-      error.cause,
+      error.message,
       import.meta.url,
       response.url,
     );

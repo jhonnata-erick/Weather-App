@@ -8,16 +8,12 @@ import type {
   locationInfo,
 } from "../types/app-types.ts";
 import { getWeatherData } from "../services/getData/getWeatherData.ts";
-import { getWWOcode } from "../services/getData/getWWOcode.ts";
-import { main_adapter } from "../adapter/main.adapter.ts";
 import { today_adapter } from "../adapter/today.adapter.ts";
 import { hourly_adapter } from "../adapter/hourly.adapter.ts";
 import { daily_adapter } from "../adapter/daily.adapter.ts";
 import { CacheData } from "../services/cache/cacheResponse.ts";
-import React from "react";
 import { openmeteoStaleTime } from "../config/openmeteo.ts";
 import { currentLocAdapter } from "../adapter/currentLoc.adapter.ts";
-import { getSearchLocation } from "../services/getData/getSearchLocation.ts";
 import { HttpError } from "../error/HttpRequest.ts";
 
 type WeatherStatus = "idle" | "loading" | "success" | "error" | "offline";
@@ -29,7 +25,13 @@ interface AppStateStore {
   locationsHistory: locationInfo[];
   currentLoc: null | locationInfo;
   status: WeatherStatus;
-  error: string;
+  error: null | {
+    name: string;
+    url: string;
+    status: number;
+    reason: string;
+    instance: string;
+  };
   setError: (err: unknown) => void;
   todayForecast: null | TodayForecast;
   hourlyForecast: null | HourlyForecast;
@@ -41,9 +43,24 @@ const useWeatherStore = create<AppStateStore>((set) => ({
   locationsHistory: [],
   currentLoc: null,
   status: navigator.onLine ? "idle" : "offline",
-  error: "",
+  error: null,
   setError: (err) => {
-    const error = err instanceof HttpError ? err.message : String(err);
+    const error =
+      err instanceof HttpError
+        ? {
+            name: err.name,
+            url: err.url,
+            status: err.status,
+            reason: err.reason,
+            instance: err.instance,
+          }
+        : {
+            name: "",
+            url: "",
+            status: 0,
+            reason: String(err),
+            instance: "",
+          };
     set({ error: error, status: navigator.onLine ? "error" : "offline" });
   },
   todayForecast: null,
@@ -51,7 +68,7 @@ const useWeatherStore = create<AppStateStore>((set) => ({
   dailyForecast: null,
   setWeatherData: async (location: location) => {
     try {
-      set({ status: "loading", error: "" });
+      set({ status: "loading", error: null });
       const loc = await getGeocodingData(location);
       const weatherApiResponse = await getWeather(location);
       const [todayForecast, hourlyForecast, dailyForecast, currentLoc] =
@@ -103,10 +120,26 @@ const useWeatherStore = create<AppStateStore>((set) => ({
         dailyForecast: null,
         currentLoc: currentLoc,
       });
-    } catch (error) {
+    } catch (err) {
+      const error =
+        err instanceof HttpError
+          ? {
+              name: err.name,
+              url: err.url,
+              status: err.status,
+              reason: err.reason,
+              instance: err.instance,
+            }
+          : {
+              name: "",
+              url: "",
+              status: 0,
+              reason: String(err),
+              instance: "",
+            };
       set({
         status: "error",
-        error: error instanceof HttpError ? error.message : String(error),
+        error: error,
       });
     }
   },
