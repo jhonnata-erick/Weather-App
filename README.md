@@ -54,3 +54,73 @@ The project includes the following main features:
   🏗️ Architecture
   The project uses a feature-based architecture, separating responsibilities between components, state management, API integration, and data transformation.
   One of the main goals of this structure was to avoid tightly coupling API logic and data transformation with the user interface.
+
+## ⚙️ Como executar
+
+### Pré-requisitos
+
+- Node.js
+- npm
+
+### Instalação
+
+Clone o repositório e instale as dependências:
+
+```bash
+git clone <repository-url>
+cd weather-app
+npm install
+```
+
+### Desenvolvimento
+
+Inicie o servidor de desenvolvimento do Vite:
+
+```bash
+npm run dev
+```
+
+A aplicação estará disponível no endereço exibido pelo Vite no terminal.
+
+### Lint
+
+O projeto utiliza **Oxlint** para análise estática do código:
+
+```bash
+npm run lint
+```
+
+## ⚙️ Getting Started
+
+### Prerequisites
+
+- Node.js
+- npm
+
+### Installation
+
+Clone the repository and install the dependencies:
+
+```bash
+git clone <repository-url>
+cd weather-app
+npm install
+```
+
+### Development
+
+Start the Vite development server:
+
+```bash
+npm run dev
+```
+
+The application will be available at the address displayed by Vite in the terminal.
+
+### Lint
+
+The project uses **Oxlint** for static code analysis:
+
+```bash
+npm run lint
+```
