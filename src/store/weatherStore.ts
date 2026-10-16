@@ -9,8 +9,6 @@ import type {
 } from "../types/app-types.ts";
 import { getWeatherData } from "../services/getData/getWeatherData.ts";
 import { today_adapter } from "../adapter/today.adapter.ts";
-import { hourly_adapter } from "../adapter/hourly.adapter.ts";
-import { daily_adapter } from "../adapter/daily.adapter.ts";
 import { CacheData } from "../services/cache/cacheResponse.ts";
 import { openmeteoStaleTime } from "../config/openmeteo.ts";
 import { currentLocAdapter } from "../adapter/currentLoc.adapter.ts";
@@ -71,17 +69,14 @@ const useWeatherStore = create<AppStateStore>((set) => ({
       set({ status: "loading", error: null });
       const loc = await getGeocodingData(location);
       const weatherApiResponse = await getWeather(location);
-      const [todayForecast, hourlyForecast, dailyForecast, currentLoc] =
-        await Promise.all([
-          todayAdapter(
-            weatherApiResponse.current,
-            weatherApiResponse.hourly,
-            weatherApiResponse.daily,
-          ),
-          hourly_adapter(weatherApiResponse.hourly),
-          daily_adapter(weatherApiResponse.daily),
-          currentLocAdapter(loc, weatherApiResponse),
-        ]);
+      const [todayForecast, currentLoc] = await Promise.all([
+        todayAdapter(
+          weatherApiResponse.current,
+          weatherApiResponse.hourly,
+          weatherApiResponse.daily,
+        ),
+        currentLocAdapter(loc, weatherApiResponse),
+      ]);
       const cachedHistory = localStorage.getItem("searchHistory");
       if (!cachedHistory) {
         const locationsHistory = [currentLoc];

@@ -10,8 +10,6 @@ import type {
 import { getGeocodingData } from "../services/getData/getLocationName.ts";
 import { getWeatherData } from "../services/getData/getWeatherData.ts";
 import { currentLocAdapter } from "../adapter/currentLoc.adapter.ts";
-import { daily_adapter } from "../adapter/daily.adapter.ts";
-import { hourly_adapter } from "../adapter/hourly.adapter.ts";
 import { today_adapter } from "../adapter/today.adapter.ts";
 import useWeatherStore from "./weatherStore.ts";
 
@@ -23,12 +21,6 @@ vi.mock("../services/getData/getWeatherData.ts", () => ({
 }));
 vi.mock("../adapter/currentLoc.adapter.ts", () => ({
   currentLocAdapter: vi.fn(),
-}));
-vi.mock("../adapter/daily.adapter.ts", () => ({
-  daily_adapter: vi.fn(),
-}));
-vi.mock("../adapter/hourly.adapter.ts", () => ({
-  hourly_adapter: vi.fn(),
 }));
 vi.mock("../adapter/today.adapter.ts", () => ({
   today_adapter: vi.fn(),
@@ -59,14 +51,14 @@ const todayForecast = {
   current: {
     date: "Fri Oct 16 2026",
     temperature: 25,
+    weather_code: 3,
+    isDay: 1,
     weather_status: "Clear sky",
     feelslike: 26,
   },
   hourly: [],
   daily: [],
 } satisfies TodayForecast;
-const hourlyForecast = { hourly: [] } satisfies HourlyForecast;
-const dailyForecast = { daily: [] } satisfies DailyForecast;
 const currentLocation: locationInfo = {
   id: "location-1",
   name: "São Paulo",
@@ -82,8 +74,6 @@ function mockSuccessfulDependencies() {
   vi.mocked(getGeocodingData).mockResolvedValue(address);
   vi.mocked(getWeatherData).mockResolvedValue(weatherResponse);
   vi.mocked(today_adapter).mockResolvedValue(todayForecast);
-  vi.mocked(hourly_adapter).mockResolvedValue(hourlyForecast);
-  vi.mocked(daily_adapter).mockResolvedValue(dailyForecast);
   vi.mocked(currentLocAdapter).mockResolvedValue(currentLocation);
 }
 
@@ -119,8 +109,6 @@ describe("setWeatherData", () => {
       weatherResponse.hourly,
       weatherResponse.daily,
     );
-    expect(hourly_adapter).toHaveBeenCalledWith(weatherResponse.hourly);
-    expect(daily_adapter).toHaveBeenCalledWith(weatherResponse.daily);
     expect(currentLocAdapter).toHaveBeenCalledWith(address, weatherResponse);
   });
 

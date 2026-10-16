@@ -6,7 +6,9 @@ export function Offline() {
   const navigate = useNavigate();
 
   const status = useWeatherStore((s) => s.status);
-  const [message, setMessage] = useState(useWeatherStore((s) => s.error));
+  const [message, setMessage] = useState(
+    useWeatherStore((s) => s.error?.reason),
+  );
 
   function handleRetry() {
     if (!navigator.onLine) {
