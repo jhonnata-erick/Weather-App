@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export function ErrorPageLayout({
   status,
@@ -7,7 +7,6 @@ export function ErrorPageLayout({
   status: number;
   message: string;
 }) {
-  const navigate = useNavigate();
   return (
     <>
       <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-linear-to-b from-sky-300 via-sky-100 to-white px-5 py-12 text-slate-900">

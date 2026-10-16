@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { StartLayout } from "../../components/layout/StartPage-layout.tsx";
 import { getIpInfo } from "../../services/getData/getIpInfo.ts";
 import { getUserIp } from "../../services/getData/getUserIp.ts";

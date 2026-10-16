@@ -32,6 +32,6 @@ export function Permission() {
         fetchUserLoc();
       }
     }
-  }, [userLocPermited]);
+  }, [userLocPermited, navigate]);
   return <PermissionLayout setPermited={setPermited} />;
 }

@@ -5,7 +5,6 @@ import { CurrentConditions } from "../ui/ForecastPage/CurrentConditions.tsx";
 import { HourlyForecast } from "../ui/ForecastPage/HourlyForecast.tsx";
 import { DailyForecast } from "../ui/ForecastPage/DailyForecast.tsx";
 import { ForecastHeader } from "../ui/ForecastPage/Header.tsx";
-import { useState } from "react";
 import { createLucideIcon } from "lucide-react";
 
 const Minus = createLucideIcon("minus", [

@@ -10,13 +10,11 @@ function App() {
   const status = useWeatherStore((s) => s.status);
   const setError = useWeatherStore((s) => s.setError);
 
-  if (status === "offline") {
-    setError(new Error("No internet connection"));
-    navigate("/offline");
-    return <>you are offline</>;
-  }
-
   useEffect(() => {
+    if (status === "offline") {
+      setError(new Error("No internet connection"));
+      navigate("/offline");
+    }
     let ipInfoJson = localStorage.getItem("userLoc");
     const rawData: any = ipInfoJson ? JSON.parse(ipInfoJson) : null;
     if (rawData && rawData.lat && rawData.lon) {
@@ -26,7 +24,7 @@ function App() {
     } else {
       navigate("/start");
     }
-  }, []);
+  }, [navigate, setError, status]);
 
   return <>Please wait...</>;
 }

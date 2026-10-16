@@ -1,4 +1,4 @@
-import { Droplets, Eye, Sun, SunDim, Thermometer } from "lucide-react";
+import { Droplets, Eye, Sun, Thermometer } from "lucide-react";
 
 export const WeatherDetails = ({ todayWeather }: { todayWeather: any }) => {
   return (

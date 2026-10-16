@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getSearchLocation } from "../../../services/getData/getSearchLocation.ts";
 import { useDebounce } from "../hooks/useDebounce.tsx";
 import { LocationsList } from "./locationsList.tsx";
-import { ChevronLeft, ChevronRight, MapPin, Search } from "lucide-react";
+import { ChevronLeft, MapPin, Search } from "lucide-react";
 import { CacheData } from "../../../services/cache/cacheResponse.ts";
 import type { GeocodingResults } from "../../../types/app-types.ts";
 import useWeatherStore from "../../../store/weatherStore.ts";
@@ -39,7 +39,7 @@ export function SearchFeature({
     } else {
       setLocations(null);
     }
-  }, [debouncedSearchData]);
+  }, [debouncedSearchData, getLocation]);
 
   useEffect(() => {
     if (searchOpen) {

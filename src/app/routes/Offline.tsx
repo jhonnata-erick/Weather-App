@@ -1,11 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useWeatherStore from "../../store/weatherStore.ts";
 
 export function Offline() {
   const navigate = useNavigate();
-
-  const status = useWeatherStore((s) => s.status);
   const [message, setMessage] = useState(
     useWeatherStore((s) => s.error?.reason),
   );

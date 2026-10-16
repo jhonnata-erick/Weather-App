@@ -1,7 +1,5 @@
 import type {
   Address,
-  GeocodingResults,
-  Location,
   locationInfo,
   OpenMeteoResponse,
 } from "../types/app-types.ts";

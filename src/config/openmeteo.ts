@@ -25,7 +25,7 @@ export function openmeteoParamsToURL(
 export function openmeteoStaleTime(): number {
   const omMin = [0, 15, 30, 45, 60];
   let stale: number = NaN;
-  omMin.forEach((m, i) => {
+  omMin.forEach((m) => {
     const date = new Date();
     const currentMinute = date.getMinutes() + date.getSeconds() / 60;
     const difference = currentMinute * 60 - m * 60;

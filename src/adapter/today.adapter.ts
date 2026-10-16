@@ -1,6 +1,5 @@
 import { getWWOcode } from "../services/getData/getWWOcode.ts";
 import type {
-  HourlyForecast,
   OpenMeteoCurrently,
   OpenMeteoDaily,
   OpenMeteoHourly,

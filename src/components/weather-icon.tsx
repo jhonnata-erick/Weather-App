@@ -8,8 +8,6 @@ import {
   CloudSnow,
   CloudLightning,
   Sparkles,
-  type LucideIcon,
-  type LucideProps,
   Moon,
   CloudMoon,
   Sunrise,

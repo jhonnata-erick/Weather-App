@@ -1,5 +1,4 @@
 import { ErrorPageLayout } from "../../components/layout/ErrorPage-layout.tsx";
-import { HttpError } from "../../error/HttpRequest.ts";
 import useWeatherStore from "../../store/weatherStore.ts";
 
 export function Error() {

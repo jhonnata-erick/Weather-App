@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { validateLocation } from "../../utils/lat&lon.validation.ts";
 import useWeatherStore from "../../store/weatherStore.ts";
 
@@ -8,21 +8,20 @@ import { ForecastPageLayout } from "../../components/layout/ForecastPage-layout.
 
 export function ForecastPage() {
   const { lat, lon } = useParams<{ lat: string; lon: string }>();
-  const location = { lat: Number(lat), lon: Number(lon) };
+  const location = useRef({ lat: Number(lat), lon: Number(lon) });
   console.log(lat, lon);
   const navigate = useNavigate();
 
   const setAppData = useWeatherStore((state) => state.setWeatherData);
   const status = useWeatherStore((state) => state.status);
-  const error = useWeatherStore((status) => status.error);
   const todayForecast = useWeatherStore((state) => state.todayForecast);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (validateLocation(location)) {
+      if (validateLocation(location.current)) {
         try {
-          setAppData(location);
-        } catch (e) {
+          setAppData(location.current);
+        } catch {
           navigate(`/error`);
         }
       } else {
@@ -32,7 +31,7 @@ export function ForecastPage() {
     return () => {
       clearTimeout(timer);
     };
-  }, [lat, lon]);
+  }, [lat, lon, setAppData, location, navigate]);
   if (status === "error") {
     navigate(`/error`);
   }

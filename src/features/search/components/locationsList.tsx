@@ -1,5 +1,5 @@
 import type { SetStateAction } from "react";
-import { useNavigate, type NavigateFunction } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import type { GeocodingResults, Location } from "../../../types/app-types.ts";
 
 export function LocationsList({
