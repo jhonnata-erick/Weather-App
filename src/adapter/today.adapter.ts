@@ -15,9 +15,12 @@ export async function today_adapter(
   daily: OpenMeteoDaily,
 ): Promise<TodayForecast> {
   /* ===== Current Conditions ===== */
+  console.log(current.weather_code);
   const currentConditions = {
     date: new Date(current.time).toDateString(),
     temperature: +current.temperature_2m.toFixed(0),
+    weather_code: current.weather_code,
+    isDay: current.is_day,
     weather_status: await getWWOcode(current.weather_code),
     feelslike: +current.apparent_temperature.toFixed(0),
   };

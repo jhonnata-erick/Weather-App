@@ -28,9 +28,10 @@ export function ForecastPageLayout({
             temperature={todayForecast.current.temperature}
             description={todayForecast.current.weather_status}
             feels_like={todayForecast.current.feelslike}
-            max_temp={25}
-            min_temp={18}
-            weather_code={1}
+            max_temp={todayForecast.daily[1]!.max_temperature}
+            min_temp={todayForecast.daily[1]!.min_temperature}
+            isDay={todayForecast.current.isDay}
+            weather_code={todayForecast.current.weather_code}
           />
         </section>
         <section className="forecast-details">

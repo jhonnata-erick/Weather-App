@@ -4,8 +4,9 @@ interface CurrentConditionsProps {
   temperature: number;
   description: string;
   feels_like: number;
-  max_temp: number;
-  min_temp: number;
+  max_temp: string;
+  min_temp: string;
+  isDay: number;
   weather_code: number;
 }
 
@@ -15,6 +16,7 @@ export function CurrentConditions({
   feels_like,
   max_temp,
   min_temp,
+  isDay,
   weather_code,
 }: CurrentConditionsProps) {
   return (
@@ -22,7 +24,12 @@ export function CurrentConditions({
       <div className="main-info">
         <span className="temperature">{temperature}º</span>
         <div className="weather-status">
-          <WeatherIcon code={weather_code} color="#ffffff" size={48} />
+          <WeatherIcon
+            code={weather_code}
+            color="#ffffff"
+            size={48}
+            isDay={isDay === 1}
+          />
           <div className="status-tag">{description}</div>
         </div>
       </div>

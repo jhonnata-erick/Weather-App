@@ -407,6 +407,8 @@ export interface TodayForecast {
 export interface TodayForecastCurrent {
   date: string;
   temperature: number;
+  weather_code: number;
+  isDay: number;
   weather_status: string;
   feelslike: number;
 }
