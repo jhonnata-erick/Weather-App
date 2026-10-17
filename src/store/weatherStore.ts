@@ -17,7 +17,6 @@ import { HttpError } from "../error/HttpRequest.ts";
 type WeatherStatus = "idle" | "loading" | "success" | "error" | "offline";
 
 const getWeather = CacheData(getWeatherData, openmeteoStaleTime());
-const todayAdapter = CacheData(today_adapter, openmeteoStaleTime());
 
 interface AppStateStore {
   locationsHistory: locationInfo[];
@@ -70,7 +69,7 @@ const useWeatherStore = create<AppStateStore>((set) => ({
       const loc = await getGeocodingData(location);
       const weatherApiResponse = await getWeather(location);
       const [todayForecast, currentLoc] = await Promise.all([
-        todayAdapter(
+        today_adapter(
           weatherApiResponse.current,
           weatherApiResponse.hourly,
           weatherApiResponse.daily,
