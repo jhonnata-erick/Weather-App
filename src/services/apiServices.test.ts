@@ -12,7 +12,6 @@ import { setupServer } from "msw/node";
 import {
   getGeocodingData,
   getSearchLocation,
-  getUserIp,
   getWeatherData,
   getWWOcode,
 } from "./getData/api.ts";
@@ -94,16 +93,6 @@ describe("getData API services", () => {
     expect(requestedUrl?.searchParams.get("format")).toBe("json");
   });
 
-  it("getUserIp returns the IP from the ipify response", async () => {
-    server.use(
-      http.get("https://api.ipify.org/", () =>
-        HttpResponse.json({ ip: "203.0.113.10" }),
-      ),
-    );
-
-    await expect(getUserIp()).resolves.toBe("203.0.113.10");
-  });
-
   it("getWeatherData sends the coordinates and returns the forecast", async () => {
     const weather = {
       latitude: location.lat,
@@ -159,11 +148,6 @@ describe("getData API services", () => {
       name: "getSearchLocation",
       url: "https://geocoding-api.open-meteo.com/v1/search",
       call: () => getSearchLocation("London"),
-    },
-    {
-      name: "getUserIp",
-      url: "https://api.ipify.org/",
-      call: () => getUserIp(),
     },
     {
       name: "getWeatherData",
