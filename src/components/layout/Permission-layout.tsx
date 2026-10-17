@@ -7,7 +7,7 @@ type PermissionLayoutProps = {
 
 export function PermissionLayout({ setPermited }: PermissionLayoutProps) {
   return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-b from-sky-200 via-sky-50 to-white px-5 py-12 text-slate-900">
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-linear-to-b from-sky-200 via-sky-50 to-white px-5 py-12 text-slate-900">
       {/* Background decoration */}
       <div
         aria-hidden="true"
