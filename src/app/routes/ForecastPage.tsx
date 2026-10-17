@@ -1,26 +1,31 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect } from "react";
 import { validateLocation } from "../../utils/lat&lon.validation.ts";
 import useWeatherStore from "../../store/weatherStore.ts";
 
 import { LoadingPage } from "../../components/ui/Loading.tsx";
 import { ForecastPageLayout } from "../../components/layout/ForecastPage-layout.tsx";
+import type { location } from "../../types/app-types.ts";
 
 export function ForecastPage() {
   const { lat, lon } = useParams<{ lat: string; lon: string }>();
-  const location = useRef({ lat: Number(lat), lon: Number(lon) });
-  console.log(lat, lon);
-  const navigate = useNavigate();
-
-  const setAppData = useWeatherStore((state) => state.setWeatherData);
+  const func = useWeatherStore((state) => state.setWeatherData);
+  const setAppData = useCallback(
+    (location: location) => {
+      return func(location);
+    },
+    [func],
+  );
   const status = useWeatherStore((state) => state.status);
   const todayForecast = useWeatherStore((state) => state.todayForecast);
-
+  const navigate = useNavigate();
   useEffect(() => {
+    const location = { lat: Number(lat), lon: Number(lon) };
+
     const timer = setTimeout(() => {
-      if (validateLocation(location.current)) {
+      if (validateLocation(location)) {
         try {
-          setAppData(location.current);
+          setAppData(location);
         } catch {
           navigate(`/error`);
         }
@@ -31,7 +36,7 @@ export function ForecastPage() {
     return () => {
       clearTimeout(timer);
     };
-  }, [lat, lon, setAppData, location, navigate]);
+  }, [lat, lon, navigate, setAppData]);
   if (status === "error") {
     navigate(`/error`);
   }

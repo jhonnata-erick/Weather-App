@@ -1,17 +1,8 @@
 // ===== API RESPONSE LAYER ===== //
 
-export type IpInfo = {
-  status: string;
-  message?: string;
-  countryCode: string;
-  region: string;
-  regionName: string;
-  city: string;
-  lat: number;
-  lon: number;
-  timezone: string;
-  proxy: boolean;
-  query: string;
+export type UserLoc = {
+  latitude: number;
+  longitude: number;
 };
 
 // ====== Nomatim geocoding ====== //

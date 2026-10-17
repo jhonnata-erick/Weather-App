@@ -1,7 +1,7 @@
 // @ts-ignore
 import "./App.css";
 import { useEffect } from "react";
-import type { IpInfo } from "../types/app-types.ts";
+import type { UserLoc } from "../types/app-types.ts";
 import { useNavigate } from "react-router-dom";
 import useWeatherStore from "../store/weatherStore.ts";
 
@@ -15,12 +15,12 @@ function App() {
       setError(new Error("No internet connection"));
       navigate("/offline");
     }
-    let ipInfoJson = localStorage.getItem("userLoc");
-    const rawData: any = ipInfoJson ? JSON.parse(ipInfoJson) : null;
-    if (rawData && rawData.lat && rawData.lon) {
-      const ipInfo: IpInfo = rawData;
-      const { lat, lon } = ipInfo;
-      navigate(`/forecast/${lat}/${lon}`);
+    let rawData = localStorage.getItem("userLoc");
+    const userLocN: null | UserLoc = rawData ? JSON.parse(rawData) : null;
+    if (userLocN && userLocN.latitude && userLocN.longitude) {
+      const userLoc: UserLoc = userLocN;
+      const { latitude, longitude } = userLoc;
+      navigate(`/forecast/${latitude}/${longitude}`);
     } else {
       navigate("/start");
     }

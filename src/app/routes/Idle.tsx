@@ -1,6 +1,6 @@
 import { SearchFeature } from "../../features/search/components/SearchFeature.tsx";
 
-export function IdlePage() {
+export function SearchPage() {
   return (
     <main>
       <SearchFeature isSearchOpen={true} />

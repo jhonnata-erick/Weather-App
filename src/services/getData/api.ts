@@ -1,4 +1,3 @@
-export { getIpInfo } from "./getIpInfo.ts";
 export { getGeocodingData } from "./getLocationName.ts";
 export { getSearchLocation } from "./getSearchLocation.ts";
 export { getUserIp } from "./getUserIp.ts";

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getSearchLocation } from "../../../services/getData/getSearchLocation.ts";
 import { useDebounce } from "../hooks/useDebounce.tsx";
 import { LocationsList } from "./locationsList.tsx";
@@ -22,7 +22,10 @@ export function SearchFeature({
 
   const debouncedSearchData = useDebounce(searchData, 250);
 
-  const getLocation = CacheData(getSearchLocation, 10000000);
+  const getLocation = useCallback((query: string) => {
+    const func = CacheData(getSearchLocation, 5000);
+    return func(query);
+  }, []);
 
   const locationsHistory = useWeatherStore((s) => s.locationsHistory);
 

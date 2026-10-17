@@ -11,7 +11,6 @@ import { http, HttpResponse } from "msw";
 import { setupServer } from "msw/node";
 import {
   getGeocodingData,
-  getIpInfo,
   getSearchLocation,
   getUserIp,
   getWeatherData,
@@ -95,32 +94,6 @@ describe("getData API services", () => {
     expect(requestedUrl?.searchParams.get("format")).toBe("json");
   });
 
-  it("getIpInfo requests the supplied IP address and returns its data", async () => {
-    const ipInfo = {
-      status: "success",
-      countryCode: "BR",
-      region: "SP",
-      regionName: "São Paulo",
-      city: "São Paulo",
-      lat: -23.55,
-      lon: -46.63,
-      timezone: "America/Sao_Paulo",
-      proxy: false,
-      query: "203.0.113.10",
-    };
-    let requestedUrl: URL | undefined;
-    server.use(
-      http.get("http://ip-api.com/json/:ip", ({ request }) => {
-        requestedUrl = new URL(request.url);
-        return HttpResponse.json(ipInfo);
-      }),
-    );
-
-    await expect(getIpInfo("203.0.113.10")).resolves.toEqual(ipInfo);
-    expect(requestedUrl?.pathname).toBe("/json/203.0.113.10");
-    expect(requestedUrl?.searchParams.get("fields")).toBe("188894");
-  });
-
   it("getUserIp returns the IP from the ipify response", async () => {
     server.use(
       http.get("https://api.ipify.org/", () =>
@@ -186,11 +159,6 @@ describe("getData API services", () => {
       name: "getSearchLocation",
       url: "https://geocoding-api.open-meteo.com/v1/search",
       call: () => getSearchLocation("London"),
-    },
-    {
-      name: "getIpInfo",
-      url: "http://ip-api.com/json/:ip",
-      call: () => getIpInfo("203.0.113.10"),
     },
     {
       name: "getUserIp",

@@ -35,7 +35,7 @@ export function CurrentConditions({
       </div>
       <div className="secondary-info">
         <span>
-          Feels like {feels_like}º | Max {max_temp}º Min {min_temp}º
+          Feels like {feels_like}º | Max {max_temp} Min {min_temp}
         </span>
       </div>
     </div>

@@ -19,7 +19,7 @@ export const getDayOfWeek = (date: string) => {
     "Saturday",
   ];
   const day_of_week =
-    todayDayNumber.getUTCDate() === dayNumber.getUTCDate()
+    todayDayNumber.getDate() === dayNumber.getUTCDate()
       ? "Today"
       : days[dayNumber.getUTCDay()];
   return day_of_week;
