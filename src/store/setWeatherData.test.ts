@@ -102,11 +102,7 @@ describe("setWeatherData", () => {
 
     expect(getGeocodingData).toHaveBeenCalledWith(location);
     expect(getWeatherData).toHaveBeenCalledWith(location);
-    expect(today_adapter).toHaveBeenCalledWith(
-      weatherResponse.current,
-      weatherResponse.hourly,
-      weatherResponse.daily,
-    );
+    expect(today_adapter).toHaveBeenCalledWith(weatherResponse);
     expect(currentLocAdapter).toHaveBeenCalledWith(address, weatherResponse);
   });
 

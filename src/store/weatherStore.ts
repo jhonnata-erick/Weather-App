@@ -68,11 +68,7 @@ const useWeatherStore = create<AppStateStore>((set, get) => ({
       const loc = await getGeocodingData(location);
       const weatherApiResponse = await getWeather(location);
       const [todayForecast, currentLoc] = await Promise.all([
-        today_adapter(
-          weatherApiResponse.current,
-          weatherApiResponse.hourly,
-          weatherApiResponse.daily,
-        ),
+        today_adapter(weatherApiResponse),
         currentLocAdapter(loc, weatherApiResponse),
       ]);
       get().setHistoryData(currentLoc);
@@ -100,24 +96,25 @@ const useWeatherStore = create<AppStateStore>((set, get) => ({
           localStorage.setItem("searchHistory", JSON.stringify(sortedHistory));
           set({
             locationsHistory: sortedHistory,
+            currentLoc: currentLoc,
           });
         } else {
           const sortedHistory = [...JSON.parse(rawData), currentLoc].sort(
             (a, b) => b.timesQueried - a.timesQueried,
           );
           localStorage.setItem("searchHistory", JSON.stringify(sortedHistory));
-          set({ locationsHistory: sortedHistory });
+          set({ locationsHistory: sortedHistory, currentLoc: currentLoc });
         }
       } else {
         const history = [currentLoc];
         localStorage.setItem("searchHistory", JSON.stringify(history));
-        set({ locationsHistory: history });
+        set({ locationsHistory: history, currentLoc: currentLoc });
       }
     } catch (error) {
       console.log(error);
       const history = [currentLoc];
       localStorage.setItem("searchHistory", JSON.stringify(history));
-      set({ locationsHistory: history });
+      set({ locationsHistory: history, currentLoc: currentLoc });
     }
   },
   setError: (err) => {

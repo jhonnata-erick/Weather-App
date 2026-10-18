@@ -3,6 +3,7 @@ import type {
   OpenMeteoCurrently,
   OpenMeteoDaily,
   OpenMeteoHourly,
+  OpenMeteoResponse,
 } from "../types/app-types.ts";
 import { getWWOcode } from "../services/getData/getWWOcode.ts";
 import { today_adapter } from "./today.adapter.ts";
@@ -59,8 +60,13 @@ describe("today_adapter", () => {
       precipitation_probability_max: [50, 10],
       weather_code: [61, 0],
     } as OpenMeteoDaily;
-
-    await expect(today_adapter(current, hourly, daily)).resolves.toEqual({
+    const weatherData = {
+      timezone: "UTC",
+      current: current,
+      hourly: hourly,
+      daily: daily,
+    } as OpenMeteoResponse;
+    await expect(today_adapter(weatherData)).resolves.toEqual({
       current: {
         date: new Date(current.time).toDateString(),
         temperature: 22,
