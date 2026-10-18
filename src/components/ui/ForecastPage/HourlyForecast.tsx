@@ -7,7 +7,7 @@ export const HourlyForecast = ({
 }: {
   hourlyForecast: TodayForecastHour[];
 }) => {
-  const focusRef = useRef<null | HTMLAnchorElement>(null);
+  const focusRef = useRef<null | HTMLDivElement>(null);
 
   useEffect(() => {
     if (focusRef.current) {

@@ -95,6 +95,7 @@ export function SearchFeature({
                 <ChevronLeft />
               </button>
               <input
+                id="search-input"
                 onChange={(e) => {
                   setSearchData(e.target.value);
                 }}

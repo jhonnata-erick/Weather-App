@@ -5,7 +5,7 @@ export default function HourlyLineGraph({
   ref,
   hourForecast,
 }: {
-  ref: React.RefObject<null | HTMLAnchorElement>;
+  ref: React.RefObject<null | HTMLDivElement>;
   hourForecast: TodayForecastHour;
 }) {
   const isNow = hourForecast.hour === "Now";
@@ -15,7 +15,7 @@ export default function HourlyLineGraph({
       ? "time-column inactive"
       : "time-column";
   return (
-    <a className={classNames} ref={isNow ? ref : null}>
+    <div className={classNames} ref={isNow ? ref : null}>
       <p className="time">{hourForecast.hour}</p>
       <div className="icon">
         <WeatherIcon
@@ -29,6 +29,6 @@ export default function HourlyLineGraph({
           {hourForecast.precipitation_chance + "%"}
         </p>
       )}
-    </a>
+    </div>
   );
 }

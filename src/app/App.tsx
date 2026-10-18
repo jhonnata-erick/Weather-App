@@ -1,4 +1,3 @@
-// @ts-ignore
 import "./App.css";
 import { useEffect } from "react";
 import useWeatherStore from "../store/weatherStore.ts";
