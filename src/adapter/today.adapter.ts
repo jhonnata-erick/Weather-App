@@ -54,7 +54,9 @@ export async function today_adapter(
   const hoursForecast: TodayForecastHour[] = unHours
 
     .sort((a, b) => +a.hour - +b.hour)
-    .filter((a, i) => a.hour !== unHours[i + 1]?.hour)
+    .filter(
+      (a, i) => a.hour.getTime() !== unHours[i + 1]?.hour.getTime(),
+    ) /*Filtrar se tem horas repetidas*/
     .map((fh) => {
       return {
         ...fh,

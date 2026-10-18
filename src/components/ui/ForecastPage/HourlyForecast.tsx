@@ -26,7 +26,7 @@ export const HourlyForecast = ({
           {hourlyForecast.map((hour) => (
             <HourlyLineGraph
               ref={focusRef}
-              key={Math.random()}
+              key={JSON.stringify(hour)}
               hourForecast={hour}
             />
           ))}
