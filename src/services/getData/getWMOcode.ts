@@ -7,8 +7,8 @@ export async function getWMOcode(
   if (!response.ok) {
     const error = await response.json();
     throw new HttpError(
-      response.status,
       error.message,
+      response.status,
       import.meta.url,
       response.url,
     );

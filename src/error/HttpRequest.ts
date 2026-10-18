@@ -3,12 +3,17 @@ export class HttpError extends Error {
   reason;
   status;
   instance;
-  constructor(status: number, message: string, instance: string, url: string) {
+  constructor(
+    message: string,
+    status?: number,
+    instance?: string,
+    url?: string,
+  ) {
     super(message);
     this.name = "HTTP Error";
-    this.url = url;
-    this.status = status;
+    this.url = url || import.meta.url;
+    this.status = status || 400;
     this.reason = message;
-    this.instance = instance;
+    this.instance = instance || import.meta.url;
   }
 }
