@@ -14,7 +14,6 @@ export async function today_adapter(
   daily: OpenMeteoDaily,
 ): Promise<TodayForecast> {
   /* ===== Current Conditions ===== */
-  console.log(current.weather_code);
   const currentConditions = {
     date: new Date(current.time).toDateString(),
     temperature: +current.temperature_2m.toFixed(0),

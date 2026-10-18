@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { useCallback, useEffect } from "react";
 import { validateLocation } from "../../utils/lat&lon.validation.ts";
 import useWeatherStore from "../../store/weatherStore.ts";
@@ -32,16 +32,15 @@ export function ForecastPage() {
       } else {
         navigate(`/*`);
       }
-    }, 1000);
+    }, 1000 /*A Api tem um limite de requisições de 1 por 1 segundo */);
     return () => {
       clearTimeout(timer);
     };
   }, [lat, lon, navigate, setAppData]);
-  if (status === "error") {
-    navigate(`/error`);
-  }
-  if (!todayForecast || status === "loading") return <LoadingPage />;
 
-  console.log(status);
+  if (!todayForecast || status === "loading") return <LoadingPage />;
+  if (status === "error") {
+    <Navigate to={`/error`} />;
+  }
   return <ForecastPageLayout todayForecast={todayForecast} />;
 }

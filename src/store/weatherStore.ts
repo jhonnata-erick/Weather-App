@@ -13,6 +13,7 @@ import { CacheData } from "../services/cache/cacheResponse.ts";
 import { openmeteoStaleTime } from "../config/openmeteo.ts";
 import { currentLocAdapter } from "../adapter/currentLoc.adapter.ts";
 import { HttpError } from "../error/HttpRequest.ts";
+import { useEffect, useState } from "react";
 
 type WeatherStatus = "idle" | "loading" | "success" | "error" | "offline";
 
@@ -22,6 +23,7 @@ interface AppStateStore {
   locationsHistory: locationInfo[];
   currentLoc: null | locationInfo;
   status: WeatherStatus;
+  initConnectionListener: () => () => void;
   error: null | {
     name: string;
     url: string;
@@ -40,6 +42,32 @@ const useWeatherStore = create<AppStateStore>((set) => ({
   locationsHistory: [],
   currentLoc: null,
   status: navigator.onLine ? "idle" : "offline",
+  initConnectionListener: () => {
+    console.log("listener iniciado");
+    const handleOnline = () => {
+      console.log("online");
+      set({ status: "idle" });
+    };
+    const handleOffline = () => {
+      console.log("offline");
+      set({
+        error: {
+          name: "",
+          url: "",
+          status: 0,
+          reason: "No Network Connection",
+          instance: "",
+        },
+        status: "offline",
+      });
+    };
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOffline);
+    return () => {
+      window.removeEventListener("online", handleOnline);
+      window.removeEventListener("offline", handleOffline);
+    };
+  },
   error: null,
   setError: (err) => {
     const error =

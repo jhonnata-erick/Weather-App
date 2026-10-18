@@ -1,5 +1,29 @@
+import { useNavigate } from "react-router-dom";
 import { StartLayout } from "../../components/layout/StartPage-layout.tsx";
+import useWeatherStore from "../../store/weatherStore.ts";
+import { useEffect } from "react";
+import type { UserLoc } from "../../types/app-types.ts";
 
 export function Start() {
-  return <StartLayout />;
+  const navigate = useNavigate();
+  const status = useWeatherStore((s) => s.status);
+  const setError = useWeatherStore((s) => s.setError);
+  console.log(status);
+  useEffect(() => {
+    let rawData = localStorage.getItem("userLoc");
+    const userLocN: null | UserLoc = rawData ? JSON.parse(rawData) : null;
+    if (
+      status !== "offline" &&
+      userLocN &&
+      userLocN.latitude &&
+      userLocN.longitude
+    ) {
+      const userLoc: UserLoc = userLocN;
+      const { latitude, longitude } = userLoc;
+      navigate(`/forecast/${latitude}/${longitude}`);
+    } else {
+      navigate("/start");
+    }
+  }, [navigate, setError, status]);
+  return <>Please wait...</>;
 }
