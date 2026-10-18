@@ -5,6 +5,7 @@ import type {
   TodayForecastHour,
 } from "../types/app-types.ts";
 import { getDayOfWeek } from "../utils/dayofweek.ts";
+import { params } from "../config/openmeteo.ts";
 
 export async function today_adapter(
   weatherData: OpenMeteoResponse,
@@ -22,9 +23,9 @@ export async function today_adapter(
   };
 
   /* ========= Hourly Forecast ==========*/
-
-  const sunset = new Date(daily.sunset[1]!);
-  const sunrise = new Date(daily.sunrise[1]!);
+  const pastdays = params.past_days;
+  const sunset = new Date(daily.sunset[pastdays]!);
+  const sunrise = new Date(daily.sunrise[pastdays]!);
 
   const now = new Date(current.time);
 
