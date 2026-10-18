@@ -23,6 +23,7 @@ export function openmeteoParamsToURL(
   return endpoint + "?" + paramsURL;
 }
 export function openmeteoStaleTime(): number {
+  console.log("1 vez");
   const omMin = [0, 15, 30, 45, 60];
   let stale: number = NaN;
   omMin.forEach((m) => {

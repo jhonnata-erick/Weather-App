@@ -16,8 +16,6 @@ import { HttpError } from "../error/HttpRequest.ts";
 
 type WeatherStatus = "idle" | "loading" | "success" | "error" | "offline";
 
-const getWeather = CacheData(getWeatherData, openmeteoStaleTime());
-
 interface AppStateStore {
   locationsHistory: locationInfo[];
   currentLoc: null | locationInfo;
@@ -88,6 +86,7 @@ const useWeatherStore = create<AppStateStore>((set) => ({
   hourlyForecast: null,
   dailyForecast: null,
   setWeatherData: async (location: location) => {
+    const getWeather = CacheData(getWeatherData, openmeteoStaleTime());
     try {
       set({ status: "loading", error: null });
       const loc = await getGeocodingData(location);

@@ -24,15 +24,11 @@ export function ForecastPage() {
 
     const timer = setTimeout(() => {
       if (validateLocation(location)) {
-        try {
-          setAppData(location);
-        } catch {
-          navigate(`/error`);
-        }
+        setAppData(location);
       } else {
         navigate(`/*`);
       }
-    }, 1000 /*A Api tem um limite de requisições de 1 por 1 segundo */);
+    }, 1000 /*A Api openmeteo tem um limite de requisições de 1 por 1 segundo, ent esse timeout foi definido por segurança quando comecei o projeto. */);
     return () => {
       clearTimeout(timer);
     };
