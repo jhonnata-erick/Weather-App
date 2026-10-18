@@ -3,8 +3,6 @@ import { getGeocodingData } from "../services/getData/getLocationName.ts";
 import type {
   location,
   TodayForecast,
-  HourlyForecast,
-  DailyForecast,
   locationInfo,
 } from "../types/app-types.ts";
 import { getWeatherData } from "../services/getData/getWeatherData.ts";
@@ -20,7 +18,7 @@ interface AppStateStore {
   locationsHistory: locationInfo[];
   currentLoc: null | locationInfo;
   status: WeatherStatus;
-  initConnectionListener: () => () => void;
+  todayForecast: null | TodayForecast;
   error: null | {
     name: string;
     url: string;
@@ -28,17 +26,18 @@ interface AppStateStore {
     reason: string;
     instance: string;
   };
-  setError: (err: unknown) => void;
-  todayForecast: null | TodayForecast;
-  hourlyForecast: null | HourlyForecast;
-  dailyForecast: null | DailyForecast;
+  initConnectionListener: () => () => void;
   setWeatherData: (location: location) => Promise<void>;
+  setHistoryData: (currentLoc: locationInfo) => void;
+  setError: (err: unknown) => void;
 }
 
-const useWeatherStore = create<AppStateStore>((set) => ({
+const useWeatherStore = create<AppStateStore>((set, get) => ({
   locationsHistory: [],
   currentLoc: null,
   status: navigator.onLine ? "idle" : "offline",
+  todayForecast: null,
+  error: null,
   initConnectionListener: () => {
     const handleOnline = () => {
       set({ status: "idle" });
@@ -62,7 +61,65 @@ const useWeatherStore = create<AppStateStore>((set) => ({
       window.removeEventListener("offline", handleOffline);
     };
   },
-  error: null,
+  setWeatherData: async (location: location) => {
+    const getWeather = CacheData(getWeatherData, openmeteoStaleTime());
+    set({ status: "loading", error: null });
+    try {
+      const loc = await getGeocodingData(location);
+      const weatherApiResponse = await getWeather(location);
+      const [todayForecast, currentLoc] = await Promise.all([
+        today_adapter(
+          weatherApiResponse.current,
+          weatherApiResponse.hourly,
+          weatherApiResponse.daily,
+        ),
+        currentLocAdapter(loc, weatherApiResponse),
+      ]);
+      get().setHistoryData(currentLoc);
+      set({
+        status: "success",
+        todayForecast: todayForecast,
+      });
+    } catch (err) {
+      get().setError(err);
+    }
+  },
+  setHistoryData: (currentLoc) => {
+    let rawData;
+    try {
+      rawData = localStorage.getItem("searchHistory");
+      if (rawData) {
+        const rawHistory: locationInfo[] = JSON.parse(rawData);
+        if (rawHistory.some((i) => i.id === currentLoc.id)) {
+          const history = rawHistory.filter(
+            (item) => item.id !== currentLoc.id,
+          );
+          const sortedHistory = [...history, currentLoc].sort(
+            (a, b) => b.timesQueried - a.timesQueried,
+          );
+          localStorage.setItem("searchHistory", JSON.stringify(sortedHistory));
+          set({
+            locationsHistory: sortedHistory,
+          });
+        } else {
+          const sortedHistory = [...JSON.parse(rawData), currentLoc].sort(
+            (a, b) => b.timesQueried - a.timesQueried,
+          );
+          localStorage.setItem("searchHistory", JSON.stringify(sortedHistory));
+          set({ locationsHistory: sortedHistory });
+        }
+      } else {
+        const history = [currentLoc];
+        localStorage.setItem("searchHistory", JSON.stringify(history));
+        set({ locationsHistory: history });
+      }
+    } catch (error) {
+      console.log(error);
+      const history = [currentLoc];
+      localStorage.setItem("searchHistory", JSON.stringify(history));
+      set({ locationsHistory: history });
+    }
+  },
   setError: (err) => {
     const error =
       err instanceof HttpError
@@ -81,84 +138,6 @@ const useWeatherStore = create<AppStateStore>((set) => ({
             instance: "",
           };
     set({ error: error, status: navigator.onLine ? "error" : "offline" });
-  },
-  todayForecast: null,
-  hourlyForecast: null,
-  dailyForecast: null,
-  setWeatherData: async (location: location) => {
-    const getWeather = CacheData(getWeatherData, openmeteoStaleTime());
-    try {
-      set({ status: "loading", error: null });
-      const loc = await getGeocodingData(location);
-      const weatherApiResponse = await getWeather(location);
-      const [todayForecast, currentLoc] = await Promise.all([
-        today_adapter(
-          weatherApiResponse.current,
-          weatherApiResponse.hourly,
-          weatherApiResponse.daily,
-        ),
-        currentLocAdapter(loc, weatherApiResponse),
-      ]);
-      const cachedHistory = localStorage.getItem("searchHistory");
-      if (!cachedHistory) {
-        const locationsHistory = [currentLoc];
-        localStorage.setItem("searchHistory", JSON.stringify(locationsHistory));
-        set({ locationsHistory: locationsHistory });
-      } else {
-        const historyArr: locationInfo[] = JSON.parse(cachedHistory);
-        if (historyArr.some((i) => i.id === currentLoc.id)) {
-          const locationsHistory = historyArr.filter(
-            (item) => item.id !== currentLoc.id,
-          );
-          locationsHistory.push(currentLoc);
-          localStorage.setItem(
-            "searchHistory",
-            JSON.stringify(locationsHistory),
-          );
-          set({
-            locationsHistory: locationsHistory.sort(
-              (a, b) => b.timesQueried - a.timesQueried,
-            ),
-          });
-        } else {
-          historyArr.push(currentLoc);
-          localStorage.setItem("searchHistory", JSON.stringify(historyArr));
-          set({
-            locationsHistory: historyArr.sort(
-              (a, b) => b.timesQueried - a.timesQueried,
-            ),
-          });
-        }
-      }
-      set({
-        status: "success",
-        todayForecast: todayForecast,
-        hourlyForecast: null,
-        dailyForecast: null,
-        currentLoc: currentLoc,
-      });
-    } catch (err) {
-      const error =
-        err instanceof HttpError
-          ? {
-              name: err.name,
-              url: err.url,
-              status: err.status,
-              reason: err.reason,
-              instance: err.instance,
-            }
-          : {
-              name: "",
-              url: "",
-              status: 0,
-              reason: String(err),
-              instance: "",
-            };
-      set({
-        status: "error",
-        error: error,
-      });
-    }
   },
 }));
 

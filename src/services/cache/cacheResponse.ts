@@ -9,13 +9,20 @@ export function CacheData<T extends any[], R>(
   stale_time: number,
 ): (...args: T) => Promise<Awaited<R>> {
   const readCache: () => CacheJson[] = () => {
-    const raw: string | null = localStorage.getItem("cache");
-    const cacheList: CacheJson[] = raw ? JSON.parse(raw) : [];
-    const filtered = cacheList.filter(
-      (item) => item.timeTostale > Date.now() / 1000,
-    );
-    localStorage.setItem("cache", JSON.stringify(filtered));
-    return filtered;
+    try {
+      const raw: string | null = localStorage.getItem("cache");
+      const cacheList: CacheJson[] = raw ? JSON.parse(raw) : [];
+      const filtered = cacheList.filter(
+        (item) => item.timeTostale > Date.now() / 1000,
+      );
+      localStorage.setItem("cache", JSON.stringify(filtered));
+      return filtered;
+    } catch (error) {
+      console.log(error);
+      const cacheList: CacheJson[] = [];
+      localStorage.setItem("cache", JSON.stringify(cacheList));
+      return cacheList;
+    }
   };
 
   return async function (...args: T): Promise<Awaited<R>> {
