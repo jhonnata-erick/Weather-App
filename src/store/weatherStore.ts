@@ -42,13 +42,10 @@ const useWeatherStore = create<AppStateStore>((set) => ({
   currentLoc: null,
   status: navigator.onLine ? "idle" : "offline",
   initConnectionListener: () => {
-    console.log("listener iniciado");
     const handleOnline = () => {
-      console.log("online");
       set({ status: "idle" });
     };
     const handleOffline = () => {
-      console.log("offline");
       set({
         error: {
           name: "",

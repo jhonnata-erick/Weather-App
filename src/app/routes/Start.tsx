@@ -7,7 +7,6 @@ export function Start() {
   const navigate = useNavigate();
   const status = useWeatherStore((s) => s.status);
   const setError = useWeatherStore((s) => s.setError);
-  console.log(status);
   useEffect(() => {
     let rawData = localStorage.getItem("userLoc");
     const userLocN: null | UserLoc = rawData ? JSON.parse(rawData) : null;
