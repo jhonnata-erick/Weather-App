@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom";
-import { StartLayout } from "../../components/layout/StartPage-layout.tsx";
 import useWeatherStore from "../../store/weatherStore.ts";
 import { useEffect } from "react";
 import type { UserLoc } from "../../types/app-types.ts";

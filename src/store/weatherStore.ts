@@ -13,7 +13,6 @@ import { CacheData } from "../services/cache/cacheResponse.ts";
 import { openmeteoStaleTime } from "../config/openmeteo.ts";
 import { currentLocAdapter } from "../adapter/currentLoc.adapter.ts";
 import { HttpError } from "../error/HttpRequest.ts";
-import { useEffect, useState } from "react";
 
 type WeatherStatus = "idle" | "loading" | "success" | "error" | "offline";
 
