@@ -13,7 +13,7 @@ import {
   getGeocodingData,
   getSearchLocation,
   getWeatherData,
-  getWWOcode,
+  getWMOcode,
 } from "./getData/api.ts";
 
 const server = setupServer();
@@ -127,15 +127,15 @@ describe("getData API services", () => {
     );
   });
 
-  it("getWWOcode returns the description for a weather code", async () => {
+  it("getWMOcode returns the description for a weather code", async () => {
     server.use(
-      http.get("*/wwocode.json", ({ request }) => {
-        expect(new URL(request.url).pathname).toBe("/wwocode.json");
+      http.get("*/wmocode.json", ({ request }) => {
+        expect(new URL(request.url).pathname).toBe("/wmocode.json");
         return HttpResponse.json({ 0: "Clear sky", 61: "Rain" });
       }),
     );
 
-    await expect(getWWOcode(61)).resolves.toBe("Rain");
+    await expect(getWMOcode(61)).resolves.toBe("Rain");
   });
 
   it.each([
@@ -155,9 +155,9 @@ describe("getData API services", () => {
       call: () => getWeatherData(location),
     },
     {
-      name: "getWWOcode",
-      url: "*/wwocode.json",
-      call: () => getWWOcode(61),
+      name: "getWMOcode",
+      url: "*/wmocode.json",
+      call: () => getWMOcode(61),
     },
   ])(
     "$name throws HttpError for a non-success response",

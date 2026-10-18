@@ -1,4 +1,4 @@
-import { getWWOcode } from "../services/getData/getWWOcode.ts";
+import { getWMOcode } from "../services/getData/getWMOcode.ts";
 import type {
   OpenMeteoResponse,
   TodayForecast,
@@ -10,13 +10,14 @@ export async function today_adapter(
   weatherData: OpenMeteoResponse,
 ): Promise<TodayForecast> {
   const { current, hourly, daily } = weatherData;
+  const wmoCodeList = await getWMOcode();
   /* ===== Current Conditions ===== */
   const currentConditions = {
     date: new Date(current.time).toDateString(),
     temperature: +current.temperature_2m.toFixed(0),
     weather_code: current.weather_code,
     isDay: current.is_day,
-    weather_status: await getWWOcode(current.weather_code),
+    weather_status: wmoCodeList[current.weather_code] || "Invalide Code",
     feelslike: +current.apparent_temperature.toFixed(0),
   };
 
@@ -42,12 +43,7 @@ export async function today_adapter(
   const weather_code = [...hourly.weather_code, 200, 300, current.weather_code];
   const past = hours.map((h) => h < now);
   const isDay = hours.map((h) => h > sunrise && h < sunset);
-  const precipitation_chance = [
-    ...hourly.precipitation_probability,
-    0,
-    0,
-    current.precipitation,
-  ];
+  const precipitation_chance = [...hourly.precipitation_probability, 0, 0, 0];
 
   const unHours = hours.map((h, i) => {
     return {
@@ -84,7 +80,7 @@ export async function today_adapter(
         max_temperature: daily.temperature_2m_max[i]!.toFixed(0) + "°",
         min_temperature: +daily.temperature_2m_min[i]!.toFixed(0) + "°",
         precipitation_chance: daily.precipitation_probability_max[i]! + "%",
-        description: await getWWOcode(daily.weather_code[i]!),
+        description: wmoCodeList[daily.weather_code[i]!] || "Invalide Code",
         weather_code: daily.weather_code[i]!,
       };
       return dayForecast;

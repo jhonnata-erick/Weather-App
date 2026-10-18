@@ -5,17 +5,17 @@ import type {
   OpenMeteoHourly,
   OpenMeteoResponse,
 } from "../types/app-types.ts";
-import { getWWOcode } from "../services/getData/getWWOcode.ts";
+import { getWMOcode } from "../services/getData/getWMOcode.ts";
 import { today_adapter } from "./today.adapter.ts";
 
-vi.mock("../services/getData/getWWOcode.ts", () => ({
-  getWWOcode: vi.fn(async (code: number) => {
+vi.mock("../services/getData/getWMOcode.ts", () => ({
+  getWMOcode: vi.fn(async (code?: number) => {
     const descriptions: Record<number, string> = {
       0: "Clear sky",
       3: "Partly cloudy",
       61: "Rain",
     };
-    return descriptions[code]!;
+    return code ? descriptions[code]! : descriptions;
   }),
 }));
 
@@ -23,7 +23,7 @@ describe("today_adapter", () => {
   beforeEach(() => {
     vi.useFakeTimers();
     vi.setSystemTime(new Date("2026-10-16T12:30:00"));
-    vi.mocked(getWWOcode).mockClear();
+    vi.mocked(getWMOcode).mockClear();
     vi.spyOn(console, "log").mockImplementation(() => {});
   });
 
@@ -98,7 +98,7 @@ describe("today_adapter", () => {
           weather_code: 3,
           past: false,
           isDay: true,
-          precipitation_chance: 25,
+          precipitation_chance: 0,
         },
         {
           hour: "13:00",
@@ -147,9 +147,6 @@ describe("today_adapter", () => {
       ],
     });
 
-    expect(getWWOcode).toHaveBeenCalledTimes(3);
-    expect(getWWOcode).toHaveBeenNthCalledWith(1, 3);
-    expect(getWWOcode).toHaveBeenNthCalledWith(2, 61);
-    expect(getWWOcode).toHaveBeenNthCalledWith(3, 0);
+    expect(getWMOcode).toHaveBeenCalledTimes(1);
   });
 });
