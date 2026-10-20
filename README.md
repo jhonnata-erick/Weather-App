@@ -158,8 +158,6 @@ A weather application developed as a study project, focused on practicing API in
   />
 </p>
 
-The main screen displays current weather conditions, an hourly forecast, and a daily forecast, with a background that adapts to the current weather conditions.
-
 ### 🔎 Location Search
 
 <p align="center">
