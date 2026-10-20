@@ -26,7 +26,7 @@ export function ForecastPage() {
       if (validateLocation(location)) {
         setAppData(location);
       } else {
-        navigate(`/*`);
+        navigate(`/error`);
       }
     }, 1000 /*A Api openmeteo tem um limite de requisições de 1 por 1 segundo, ent esse timeout foi definido por segurança quando comecei o projeto. */);
     return () => {
@@ -36,7 +36,7 @@ export function ForecastPage() {
 
   if (!todayForecast || status === "loading") return <LoadingPage />;
   if (status === "error") {
-    <Navigate to={`/error`} />;
+    return <Navigate to={`/error`} />;
   }
   return <ForecastPageLayout todayForecast={todayForecast} />;
 }
