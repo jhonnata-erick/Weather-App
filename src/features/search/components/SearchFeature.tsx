@@ -94,6 +94,7 @@ export function SearchFeature({
               >
                 <ChevronLeft />
               </button>
+              <label htmlFor="search-input">Search a location</label>
               <input
                 id="search-input"
                 onChange={(e) => {

@@ -47,49 +47,45 @@ export function ErrorPageLayout({
 
           {/* Actions */}
           <div className="mt-8 flex w-full max-w-xs flex-col gap-3">
-            <Link to={"/"}>
-              <button
-                type="button"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 font-semibold text-white shadow-lg shadow-blue-600/20 transition hover:bg-blue-700 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+            <Link
+              to={"/"}
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 font-semibold text-white shadow-lg shadow-blue-600/20 transition hover:bg-blue-700 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                className="h-5 w-5"
+                aria-hidden="true"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  className="h-5 w-5"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M20 7V3m0 4h-4M4.9 9a7.5 7.5 0 0 1 12.7-2L20 7M4 17v4m0-4h4m11.1-2a7.5 7.5 0 0 1-12.7 2L4 17"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                Try Again
-              </button>
+                <path
+                  d="M20 7V3m0 4h-4M4.9 9a7.5 7.5 0 0 1 12.7-2L20 7M4 17v4m0-4h4m11.1-2a7.5 7.5 0 0 1-12.7 2L4 17"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              Try Again
             </Link>
-            <Link to={"/"}>
-              <button
-                type="button"
-                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/80 bg-white/60 px-6 py-3 font-semibold text-slate-700 backdrop-blur-sm transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-600 focus-visible:ring-offset-2"
+            <Link
+              to={"/"}
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/80 bg-white/60 px-6 py-3 font-semibold text-slate-700 backdrop-blur-sm transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-600 focus-visible:ring-offset-2"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                className="h-5 w-5"
+                aria-hidden="true"
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  className="h-5 w-5"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M19 12H5m7 7-7-7 7-7"
-                    stroke="currentColor"
-                    strokeWidth="1.8"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                Go Back
-              </button>
+                <path
+                  d="M19 12H5m7 7-7-7 7-7"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              Go Back
             </Link>
           </div>
         </section>
