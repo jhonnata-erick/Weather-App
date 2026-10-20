@@ -151,7 +151,11 @@ A weather application developed as a study project, focused on practicing API in
 ### 🌤️ Weather Forecast
 
 <p align="center">
-  <img src="./screenshots/forecast(iPhone%2016%20Pro%20Max).png" width="300" alt="Main weather forecast screen" />
+  <img
+    src="./screenshots/forecast.png"
+    width="300"
+    alt="Main weather forecast screen"
+  />
 </p>
 
 The main screen displays current weather conditions, an hourly forecast, and a daily forecast, with a background that adapts to the current weather conditions.
@@ -159,34 +163,42 @@ The main screen displays current weather conditions, an hourly forecast, and a d
 ### 🔎 Location Search
 
 <p align="center">
-  <img src="./screenshots/search(iPhone%2016%20Pro%20Max).png" width="300" alt="Location search screen" />
+  <img
+    src="./screenshots/search.png"
+    width="300"
+    alt="Location search screen"
+  />
 </p>
-
-Users can search for locations and view matching results, while also keeping a history of recently searched locations.
 
 ### 📍 Location Selection
 
 <p align="center">
-  <img src="./screenshots/permission(iPhone%2016%20Pro%20Max).png" width="300" alt="Location selection screen" />
+  <img
+    src="./screenshots/permission.png"
+    width="300"
+    alt="Location selection screen"
+  />
 </p>
-
-Users can either use their current device location or search for a city manually.
 
 ### 📴 Offline State
 
 <p align="center">
-  <img src="./screenshots/offline(iPhone%2016%20Pro%20Max).png" width="300" alt="Offline state screen" />
+  <img
+    src="./screenshots/offline.png"
+    width="300"
+    alt="Offline state screen"
+  />
 </p>
-
-The application provides a dedicated state for situations where an internet connection is unavailable.
 
 ### 👋 Welcome Screen
 
 <p align="center">
-  <img src="./screenshots/start(iPhone%2016%20Pro%20Max).png" width="300" alt="Application welcome screen" />
+  <img
+    src="./screenshots/start.png"
+    width="300"
+    alt="Application welcome screen"
+  />
 </p>
-
-The initial screen presented to the user before choosing a location.
 
 ## 🚀 Features
 
