@@ -4,6 +4,8 @@
 
 ---
 
+Live Demo url: [lunara-app-five.vercel.app](https://lunara-app-five.vercel.app)
+
 # 🇧🇷 Português
 
 Uma aplicação de previsão do tempo desenvolvida como projeto de estudo, com foco em praticar integração com APIs, gerenciamento de estado assíncrono e organização de aplicações frontend.
