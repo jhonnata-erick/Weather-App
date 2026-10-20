@@ -11,46 +11,13 @@ Uma aplicação de previsão do tempo desenvolvida como projeto de estudo, com f
 
 ## 📸 Screenshots
 
-### 🌤️ Previsão do tempo
-
 <p align="center">
-  <img src="./screenshots/forecast(iPhone%2016%20Pro%20Max).png" width="300" alt="Tela principal com previsão do tempo" />
+  <img src="./screenshots/main-pages.png">
 </p>
 
-A tela principal apresenta as condições atuais, previsão horária e previsão para os próximos dias, utilizando um background adaptado às condições meteorológicas.
-
-### 🔎 Busca de localidades
-
 <p align="center">
-  <img src="./screenshots/search(iPhone%2016%20Pro%20Max).png" width="300" alt="Tela de busca de localidades" />
+  <img src="./screenshots/states.png">
 </p>
-
-Permite pesquisar localidades e visualizar resultados, além de manter um histórico de buscas recentes.
-
-### 📍 Seleção de localização
-
-<p align="center">
-  <img src="./screenshots/permission(iPhone%2016%20Pro%20Max).png" width="300" alt="Tela de seleção de localização" />
-</p>
-
-O usuário pode utilizar sua localização atual ou pesquisar manualmente uma cidade.
-
-### 📴 Estado offline
-
-<p align="center">
-  <img src="./screenshots/offline(iPhone%2016%20Pro%20Max).png" width="300" alt="Tela exibida quando o usuário está offline" />
-</p>
-
-A aplicação possui um estado específico para situações em que não há conexão com a internet.
-
-### 👋 Tela inicial
-
-<p align="center">
-  <img src="./screenshots/start(iPhone%2016%20Pro%20Max).png" width="300" alt="Tela inicial do aplicativo" />
-</p>
-
-Tela de apresentação inicial do aplicativo antes da seleção da localização.
-
 ## 🚀 Funcionalidades
 
 - 🔎 **Busca de Localidades:** pesquisa de localidades do mundo inteiro.
@@ -148,54 +115,12 @@ A weather application developed as a study project, focused on practicing API in
 
 ## 📸 Screenshots
 
-### 🌤️ Weather Forecast
-
 <p align="center">
-  <img
-    src="./screenshots/forecast.png"
-    width="300"
-    alt="Main weather forecast screen"
-  />
+  <img src="./screenshots/main-pages.png">
 </p>
 
-### 🔎 Location Search
-
 <p align="center">
-  <img
-    src="./screenshots/search.png"
-    width="300"
-    alt="Location search screen"
-  />
-</p>
-
-### 📍 Location Selection
-
-<p align="center">
-  <img
-    src="./screenshots/permission.png"
-    width="300"
-    alt="Location selection screen"
-  />
-</p>
-
-### 📴 Offline State
-
-<p align="center">
-  <img
-    src="./screenshots/offline.png"
-    width="300"
-    alt="Offline state screen"
-  />
-</p>
-
-### 👋 Welcome Screen
-
-<p align="center">
-  <img
-    src="./screenshots/start.png"
-    width="300"
-    alt="Application welcome screen"
-  />
+  <img src="./screenshots/states.png">
 </p>
 
 ## 🚀 Features
