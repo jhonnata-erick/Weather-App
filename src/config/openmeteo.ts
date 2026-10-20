@@ -1,6 +1,6 @@
-import type { location, OpenMeteoParams } from "../types/app-types.ts";
-export const endpoint = "https://api.open-meteo.com/v1/forecast";
+import type { OpenMeteoParams } from "../types/app-types.ts";
 
+export const endpoint = "https://api.open-meteo.com/v1/forecast";
 export const params: OpenMeteoParams = {
   latitude: 0,
   longitude: 0,
@@ -59,24 +59,7 @@ export const params: OpenMeteoParams = {
   forecast_minutely_15: 48,
   past_minutely_15: 24,
 };
-export function openmeteoParamsToURL({ lat, lon }: location) {
-  const { daily, hourly, current, minutely_15, models } = params;
-  const paramsArray = Object.entries({
-    ...params,
-    latitude: lat,
-    longitude: lon,
-    daily: daily?.toString(),
-    hourly: hourly?.toString(),
-    models: models?.toString(),
-    current: current?.toString(),
-    minutely_15: minutely_15?.toString(),
-  });
-  const paramsURL = paramsArray
-    .filter((pars) => pars[1]! !== undefined)
-    .map((value) => value.join("="))
-    .join("&");
-  return endpoint + "?" + paramsURL;
-}
+
 export function openmeteoStaleTime(): number {
   const omMin = [0, 15, 30, 45, 60];
   let stale: number = NaN;

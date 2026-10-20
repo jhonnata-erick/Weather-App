@@ -1,4 +1,3 @@
-// @ts-expect-error CSS side-effect imports are handled by the bundler.
 import "./ForecastPage-styles.css";
 import type { TodayForecast } from "../../types/app-types.ts";
 import { CurrentConditions } from "../ui/ForecastPage/CurrentConditions.tsx";

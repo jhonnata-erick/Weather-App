@@ -1,14 +1,11 @@
-import { openmeteoParamsToURL } from "../../config/openmeteo.ts";
+import { openmeteoParamsToURL } from "../../utils/openmeteoParamsToURL.ts";
 import { HttpError } from "../../error/HttpRequest.ts";
-import type {
-  location,
-  OpenMeteoParams,
-  OpenMeteoResponse,
-} from "../../types/app-types.ts";
+import { endpoint, params } from "../../config/openmeteo.ts";
+import type { location, OpenMeteoResponse } from "../../types/app-types.ts";
 export async function getWeatherData(
   location: location,
 ): Promise<OpenMeteoResponse> {
-  const url = openmeteoParamsToURL(location);
+  const url = openmeteoParamsToURL(endpoint, location, params);
   const response = await fetch(url);
   if (!response.ok) {
     const error = await response.json();
