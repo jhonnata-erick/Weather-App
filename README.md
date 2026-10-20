@@ -1,10 +1,8 @@
-# 🌤️ Simple Weather App
+# 🌤️ [Simple Weather App](https://lunara-app-five.vercel.app)
 
 🇧🇷 Português | 🇺🇸 English
 
 ---
-
-🔗 [Live Demo](https://lunara-app-five.vercel.app)
 
 # 🇧🇷 Português
 
