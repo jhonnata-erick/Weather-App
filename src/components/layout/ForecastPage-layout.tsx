@@ -42,20 +42,26 @@ export function ForecastPageLayout({
         </section>
       </main>
       <nav></nav>
-      <footer>
-        <p>
+      <footer className="w-full max-w-2xl mx-auto px-4 py-8 text-center text-sm text-slate-500 border-t border-slate-200 dark:border-slate-800 dark:text-slate-400">
+        <p className="mb-2">
           This simple weather app shows you your current weather, hourly
           forecast, and daily forecast.
         </p>
-        <p>
+        <p className="mb-4">
           My main goal is to improve my abilities with UX, system design,
-          performance, and accessibility
+          performance, and accessibility.
         </p>
         <p>
           My github page:
-          <a href="https://github.com/jhonnata-erick">jhonnata-erick</a>
+          <a
+            href="https://github.com/jhonnata-erick"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 hover:text-blue-600 hover:underline font-medium transition-colors"
+          >
+            jhonnata-erick
+          </a>
         </p>
-        <br />
       </footer>
     </>
   );

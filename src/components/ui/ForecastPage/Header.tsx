@@ -18,7 +18,7 @@ export function ForecastHeader() {
           </div>
         </div>
       </div>
-      <SearchFeature />
+      <SearchFeature isSearchOpen={false} searchPage={false} />
     </>
   );
 }

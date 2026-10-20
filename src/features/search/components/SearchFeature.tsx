@@ -9,9 +9,11 @@ import useWeatherStore from "../../../store/weatherStore.ts";
 import { useNavigate } from "react-router-dom";
 
 export function SearchFeature({
-  isSearchOpen = false,
+  isSearchOpen = true,
+  searchPage = true,
 }: {
   isSearchOpen?: boolean;
+  searchPage?: boolean;
 }) {
   /* === Setting states === */
 
@@ -54,7 +56,7 @@ export function SearchFeature({
     return () => {
       document.body.style.overflow = "";
     };
-  }, [searchOpen]);
+  }, [searchOpen, searchPage]);
 
   const historyRender = locationsHistory.map((location) => {
     return (
@@ -86,23 +88,29 @@ export function SearchFeature({
       <div className="search-container">
         {searchOpen && (
           <div className="search-section">
-            <div className="input-container">
-              <button
-                onClick={() => setSearchOpen(!searchOpen)}
-                className="close"
-                aria-label="Close search container"
-              >
-                <ChevronLeft />
-              </button>
-              <label htmlFor="search-input">Search a location</label>
-              <input
-                id="search-input"
-                onChange={(e) => {
-                  setSearchData(e.target.value);
-                }}
-                className="search-input"
-                value={searchData}
-              />
+            <div className="search-container">
+              {searchPage === false && (
+                <button
+                  onClick={() => setSearchOpen(!searchOpen)}
+                  className="close"
+                  aria-label="Close search container"
+                >
+                  <ChevronLeft />
+                </button>
+              )}
+              <div className="input-container">
+                <label className="font-bold" htmlFor="search-input">
+                  Search a location
+                </label>
+                <input
+                  id="search-input"
+                  onChange={(e) => {
+                    setSearchData(e.target.value);
+                  }}
+                  className="search-input"
+                  value={searchData}
+                />
+              </div>
             </div>
             <strong>Results</strong>
             <div className="results">

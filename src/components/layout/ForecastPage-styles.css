@@ -55,10 +55,16 @@
 /* ================================
    SEARCH INPUT
 ================================ */
-.input-container {
+.search-container {
   display: flex;
   align-items: center;
   gap: 16px;
+}
+.input-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 8px;
 }
 .search-input {
   width: 100%;
