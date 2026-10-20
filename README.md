@@ -1,9 +1,10 @@
-````md
 # 🌤️ Simple Weather App
 
 🇧🇷 Português | 🇺🇸 English
 
 ---
+
+🔗 [Live Demo](https://lunara-app-five.vercel.app)
 
 # 🇧🇷 Português
 
@@ -12,12 +13,13 @@ Uma aplicação de previsão do tempo desenvolvida como projeto de estudo, com f
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="./screenshots/main-pages.png">
+  <img src="./screenshots/main-pages.png" alt="Principais telas da aplicação" />
 </p>
 
 <p align="center">
-  <img src="./screenshots/states.png">
+  <img src="./screenshots/states.png" alt="Diferentes estados da aplicação" />
 </p>
+
 ## 🚀 Funcionalidades
 
 - 🔎 **Busca de Localidades:** pesquisa de localidades do mundo inteiro.
@@ -70,7 +72,6 @@ Para executar os testes:
 ```bash
 npm run test
 ```
-````
 
 ## ⚙️ Como executar
 
@@ -116,11 +117,11 @@ A weather application developed as a study project, focused on practicing API in
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="./screenshots/main-pages.png">
+  <img src="./screenshots/main-pages.png" alt="Main application screens" />
 </p>
 
 <p align="center">
-  <img src="./screenshots/states.png">
+  <img src="./screenshots/states.png" alt="Different application states" />
 </p>
 
 ## 🚀 Features
@@ -210,15 +211,3 @@ The project uses **Oxlint** for static code analysis:
 ```bash
 npm run lint
 ```
-
-````
-
-### Uma observação importante
-
-Eu deixaria o **link da demo fora por enquanto**, já que você ainda não me passou a URL. Quando publicar, podemos colocar logo abaixo da descrição:
-
-```md
-🔗 [Live Demo](https://...)
-````
-
-E eu faria mais uma pequena alteração antes de considerar esse README **100% final**: conferir seu `package.json` para validar se os scripts são realmente `npm run test` e `npm run lint`. O lockfile confirma Vitest, MSW e Oxlint instalados, mas não confirma os nomes dos scripts. Isso evita colocar um comando no README que depois não funciona.
