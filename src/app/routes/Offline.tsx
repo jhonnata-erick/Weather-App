@@ -10,7 +10,7 @@ export function Offline() {
 
   function handleRetry() {
     if (!navigator.onLine) {
-      setMessage("Verifique sua conexão e tente novamente.");
+      setMessage("Check your internet connection and try again.");
       return;
     }
 
@@ -98,16 +98,16 @@ export function Offline() {
 
         {/* Message */}
         <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-sky-700">
-          {navigator.onLine ? "Conexão disponível" : "Sem conexão"}
+          {navigator.onLine ? "Connection available" : "No connection"}
         </p>
 
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-          Você está offline
+          You're offline
         </h1>
 
         <p className="mt-4 max-w-sm text-base leading-relaxed text-slate-600">
-          Parece que perdemos contato com o céu. Verifique sua conexão com a
-          internet para consultar a previsão do tempo.
+          It looks like we've lost contact with the sky. Check your internet
+          connection to get the latest weather forecast.
         </p>
 
         {message && (
@@ -140,14 +140,14 @@ export function Offline() {
                 strokeLinejoin="round"
               />
             </svg>
-            Tentar novamente
+            Try again
           </button>
 
           <Link
             to="/"
             className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/80 bg-white/60 px-6 py-3 font-semibold text-slate-700 backdrop-blur-sm transition hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-600 focus-visible:ring-offset-2"
           >
-            Voltar para o início
+            Back to home
           </Link>
         </div>
 
