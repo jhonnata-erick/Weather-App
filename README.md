@@ -160,4 +160,130 @@ The main screen displays current weather conditions, an hourly forecast, and a d
 
 <p align="center">
   <img src="./screenshots/search(iPhone%2016%20Pro%20Max).png" width="300" alt="Location search screen" />
-</
+</p>
+
+Users can search for locations and view matching results, while also keeping a history of recently searched locations.
+
+### 📍 Location Selection
+
+<p align="center">
+  <img src="./screenshots/permission(iPhone%2016%20Pro%20Max).png" width="300" alt="Location selection screen" />
+</p>
+
+Users can either use their current device location or search for a city manually.
+
+### 📴 Offline State
+
+<p align="center">
+  <img src="./screenshots/offline(iPhone%2016%20Pro%20Max).png" width="300" alt="Offline state screen" />
+</p>
+
+The application provides a dedicated state for situations where an internet connection is unavailable.
+
+### 👋 Welcome Screen
+
+<p align="center">
+  <img src="./screenshots/start(iPhone%2016%20Pro%20Max).png" width="300" alt="Application welcome screen" />
+</p>
+
+The initial screen presented to the user before choosing a location.
+
+## 🚀 Features
+
+- 🔎 **Location Search:** search for locations around the world.
+- 📍 **Current Location:** use the device's current location.
+- 🌡️ **Current Conditions:** display current temperature, highs, lows, and feels-like temperature.
+- 🕒 **Hourly Forecast:** a timeline showing weather changes throughout the upcoming hours.
+- 📅 **Extended Forecast:** temperature and weather conditions for the upcoming days.
+- 📴 **Offline Handling:** a dedicated state for when there is no internet connection.
+- 🕘 **Search History:** keeps track of previously searched locations.
+- 🎨 **Dynamic Background:** the interface adapts to the displayed weather conditions.
+
+## 🧠 Challenges & Learnings
+
+At the beginning of the project, I had little experience with application architecture and also struggled with API integration. This made the early stages of development more difficult than I expected.
+
+Throughout the project, however, I gained a much better understanding of how to structure an application, work with data from APIs, and turn project requirements into actual features.
+
+Looking back at the code today, I can see many things I would approach differently. I consider this one of the most valuable parts of the project: it showed me not only what I have learned, but also what I still need to improve.
+
+I plan to take these lessons into my next projects and continue improving both my technical decisions and the way I structure and develop applications.
+
+## 🏗️ Architecture
+
+The project uses a feature-based architecture, separating responsibilities between components, state management, API integration, and data transformation.
+
+One of the main goals of this structure was to avoid tightly coupling API logic and data transformation with the user interface.
+
+The application also uses an adapter layer to transform API responses into a model used by the application, keeping the interface independent from the original API response format.
+
+## 🛠️ Technologies
+
+- **React**
+- **TypeScript**
+- **Vite**
+- **Tailwind CSS**
+- **Zustand**
+- **React Router**
+- **Open-Meteo API**
+- **Vitest**
+- **MSW**
+- **Oxlint**
+- **npm**
+
+## 🧪 Testing
+
+Tests were developed using **Vitest** and **MSW (Mock Service Worker)** to simulate API responses and test different application scenarios without directly depending on the external API.
+
+To run the tests:
+
+```bash
+npm run test
+```
+
+## ⚙️ Getting Started
+
+### Prerequisites
+
+- Node.js
+- npm
+
+### Installation
+
+Clone the repository and install the dependencies:
+
+```bash
+git clone <repository-url>
+cd weather-app
+npm install
+```
+
+### Development
+
+Start the Vite development server:
+
+```bash
+npm run dev
+```
+
+The application will be available at the address displayed by Vite in the terminal.
+
+### Lint
+
+The project uses **Oxlint** for static code analysis:
+
+```bash
+npm run lint
+```
+
+````
+
+### Uma observação importante
+
+Eu deixaria o **link da demo fora por enquanto**, já que você ainda não me passou a URL. Quando publicar, podemos colocar logo abaixo da descrição:
+
+```md
+🔗 [Live Demo](https://...)
+````
+
+E eu faria mais uma pequena alteração antes de considerar esse README **100% final**: conferir seu `package.json` para validar se os scripts são realmente `npm run test` e `npm run lint`. O lockfile confirma Vitest, MSW e Oxlint instalados, mas não confirma os nomes dos scripts. Isso evita colocar um comando no README que depois não funciona.
