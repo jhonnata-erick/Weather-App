@@ -1,0 +1,19 @@
+name: CI Pipeline
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: dependencies install
+        run: npm install
+      - name: types check
+        run: npx tsc --noEmit
+      - name: Run oxlint
+        run: npx oxlint
+      - name: Run tests
+        run: npx vitest
