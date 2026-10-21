@@ -51,8 +51,8 @@ export interface OpenMeteoParams {
   forecast_days: number;
   forecast_hours: number;
   past_hours: number;
-  forecast_minutely_15: number;
-  past_minutely_15: number;
+  forecast_minutely_15?: number;
+  past_minutely_15?: number;
 }
 const openmeteoDailyParamsPermited = [
   "temperature_2m_max",

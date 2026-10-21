@@ -33,10 +33,10 @@ export function ForecastPage() {
       clearTimeout(timer);
     };
   }, [lat, lon, navigate, setAppData]);
-
-  if (!todayForecast || status === "loading") return <LoadingPage />;
   if (status === "error") {
     return <Navigate to={`/error`} />;
   }
+  if (!todayForecast || status === "loading") return <LoadingPage />;
+
   return <ForecastPageLayout todayForecast={todayForecast} />;
 }

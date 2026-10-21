@@ -116,15 +116,18 @@ describe("getData API services", () => {
     expect(requestedUrl?.searchParams.get("longitude")).toBe(
       String(location.lon),
     );
-    expect(requestedUrl?.searchParams.get("current")).toContain(
-      "temperature_2m",
+    expect(requestedUrl?.searchParams.get("current")).toBe(
+      "temperature_2m,apparent_temperature,weather_code,is_day",
     );
-    expect(requestedUrl?.searchParams.get("hourly")).toContain(
-      "temperature_2m",
+    expect(requestedUrl?.searchParams.get("hourly")).toBe(
+      "precipitation_probability,weather_code,temperature_2m",
     );
-    expect(requestedUrl?.searchParams.get("daily")).toContain(
-      "temperature_2m_max",
+    expect(requestedUrl?.searchParams.get("daily")).toBe(
+      "temperature_2m_max,temperature_2m_min,precipitation_probability_max,weather_code,sunrise,sunset",
     );
+    expect(requestedUrl?.searchParams.get("minutely_15")).toBeNull();
+    expect(requestedUrl?.searchParams.get("forecast_minutely_15")).toBeNull();
+    expect(requestedUrl?.searchParams.get("past_minutely_15")).toBeNull();
   });
 
   it("getWMOcode returns the description for a weather code", async () => {
