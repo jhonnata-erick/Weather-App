@@ -73,7 +73,7 @@ export async function today_adapter(
   const daysForecast = await Promise.all(
     daily.time.map(async (d, i) => {
       const dayForecast = {
-        dayOfWeek: getDayOfWeek(d, weatherData.timezone!, current.time)!,
+        dayOfWeek: getDayOfWeek({ date: d, now: current.time })!,
         day: new Date(d).getDate(),
         max_temperature: daily.temperature_2m_max[i]!.toFixed(0) + "°",
         min_temperature: +daily.temperature_2m_min[i]!.toFixed(0) + "°",
